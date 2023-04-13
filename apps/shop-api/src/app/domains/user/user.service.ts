@@ -3,6 +3,8 @@ import {Injectable} from "@nestjs/common";
 import {InjectRepository} from "@nestjs/typeorm";
 import {User} from "./user.entity";
 import {Repository} from "typeorm";
+import {EmailString} from "@shop/shared-ts";
+
 
 @Injectable()
 export class UserService {
@@ -12,7 +14,7 @@ export class UserService {
   ) {
   }
 
-  async createUser(email: string, password: string) {
+  async createUser(email: EmailString, password: string) {
 
     // Check if email unique
     const emailExists = await this.emailExists(email);
@@ -35,7 +37,7 @@ export class UserService {
   }
 
   // TODO KN Improve to EmailString
-  async emailExists(email: string): Promise<boolean> {
+  async emailExists(email: EmailString): Promise<boolean> {
     const user = await this.userRepository.findBy({ email });
 
     return !!user

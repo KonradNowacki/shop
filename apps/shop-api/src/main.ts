@@ -7,9 +7,23 @@ import { Logger } from "@nestjs/common";
 import { NestFactory } from "@nestjs/core";
 
 import { AppModule } from "./app/app.module";
+import {TypeOrmModule} from "@nestjs/typeorm";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  TypeOrmModule.forRoot({
+    type: 'postgres',
+    host: 'localhost',
+    port: 3306,
+    username: 'postgres',
+    password: '123',
+    database: 'shop',
+    entities: [],
+    synchronize: true,
+  })
+
+
+
   const globalPrefix = "api";
   app.setGlobalPrefix(globalPrefix);
   const port = process.env.PORT || 3000;

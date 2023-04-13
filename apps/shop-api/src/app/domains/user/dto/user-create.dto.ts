@@ -1,9 +1,10 @@
 import {IsEmail, IsStrongPassword} from "class-validator";
+import {EmailString} from "@shop/shared-ts";
 
 export class UserCreateDto {
 
   @IsEmail()
-  readonly email: string;
+  readonly email: EmailString;
 
   @IsStrongPassword({
     minLength: 8,
