@@ -10,6 +10,7 @@ export class AuthController {
 
   @Post('signup')
   signup(@Body() { email, password }: UserCreateDto) {
+    console.log('from signup')
     this.userService.createUser(email, password)
   }
 
