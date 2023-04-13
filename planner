@@ -7,3 +7,6 @@
 [] Add Angular host
 [] Add Angular remote list of all products
 [] Add Navbar + storybook as library (read on libraries)
+[] Add unit tests backend
+[] Add unit tests frontend
+[] Add e2e tests
