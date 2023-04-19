@@ -1,9 +1,12 @@
-import {Injectable} from "@nestjs/common";
+import {Injectable, NotAcceptableException} from "@nestjs/common";
 
 import {InjectRepository} from "@nestjs/typeorm";
 import {User} from "./user.entity";
 import {Repository} from "typeorm";
 import {EmailString} from "@shop/shared-ts";
+
+import * as bcrypt from 'bcrypt';
+import { v4 as uuid } from 'uuid';
 
 
 @Injectable()
@@ -19,16 +22,23 @@ export class UserService {
     // Check if email unique
     const emailExists = await this.emailExists(email);
     if (emailExists) {
-      // Throw custom exception
+      throw new NotAcceptableException(`Email ${email} already exists in db`)
     }
 
     // Hash password
+    const salt = 11;
+    password = await bcrypt.hash(password, salt);
 
     // Generate email activation code
+    const emailActivationCode = uuid();
 
 
     // Create user
-    const user = this.userRepository.create({ email, password});
+    const user = this.userRepository.create({
+      email,
+      password,
+      emailActivationCode
+    });
 
     // Send confirmation email
 
@@ -36,7 +46,6 @@ export class UserService {
     return this.userRepository.save(user);
   }
 
-  // TODO KN Improve to EmailString
   async emailExists(email: EmailString): Promise<boolean> {
     const user = await this.userRepository.findBy({ email });
 

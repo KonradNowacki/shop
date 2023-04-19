@@ -1,12 +1,15 @@
 [DONE] Connect DB
 [IN PROGRESS] Signup a new user
 [] signin a new user
+[] Encrypt password signup
 [DONE] add EmailString with an nx library
+
 [] Handle JWT
 [] Check JWT with example endpoint
 [] Add Angular host
 [] Add Angular remote list of all products
 [] Add Navbar + storybook as library (read on libraries)
+
 [] Add unit tests backend
 [] Add unit tests frontend
 [] Add e2e tests

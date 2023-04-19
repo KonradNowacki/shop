@@ -1,7 +1,7 @@
-import {Column, Entity, PrimaryGeneratedColumn} from "typeorm";
+import {AfterInsert, AfterRemove, AfterUpdate, Column, Entity, PrimaryGeneratedColumn} from "typeorm";
 
 @Entity()
-export class User {
+export class User  {
 
   @PrimaryGeneratedColumn()
   id: number;
@@ -12,7 +12,29 @@ export class User {
   @Column()
   password: string;
 
+  @Column()
+  emailActivationCode: string
 
-  // TODO KN Add logs
+  @Column({ default: false })
+  isActive: boolean;
+
+
+
+
+
+  @AfterInsert()
+  private afterInsert() {
+    // TODO KN Add logs - move to subscriber ??
+  }
+
+  @AfterUpdate()
+  private afterUpdate () {
+    // TODO KN Add logs - move to subscriber ??
+  }
+
+  @AfterRemove()
+  private adterRemove () {
+    // TODO KN Add logs - move to subscriber ??
+  }
 
 }

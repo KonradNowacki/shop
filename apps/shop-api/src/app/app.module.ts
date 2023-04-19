@@ -1,4 +1,4 @@
-import { Module } from "@nestjs/common";
+import {MiddlewareConsumer, Module, NestModule} from "@nestjs/common";
 import {UserModule} from "./domains/user/user.module";
 import {TypeOrmModule} from "@nestjs/typeorm";
 import {User} from "./domains/user/user.entity";
@@ -15,4 +15,12 @@ import {User} from "./domains/user/user.entity";
     })
   ],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer): any {
+    // TODO KN Use it when middleware is ready
+    // consumer.apply(AuthMiddleware).forRoutes({
+    //   path: '*'
+    // })
+  }
+
+}
