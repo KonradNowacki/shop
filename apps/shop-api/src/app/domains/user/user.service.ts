@@ -1,4 +1,4 @@
-import {Injectable, NotAcceptableException} from "@nestjs/common";
+import {Injectable, NotAcceptableException, UnauthorizedException} from "@nestjs/common";
 
 import {InjectRepository} from "@nestjs/typeorm";
 import {User} from "./user.entity";
@@ -48,8 +48,17 @@ export class UserService {
 
   async emailExists(email: EmailString): Promise<boolean> {
     const user = await this.userRepository.findBy({ email });
-
     return !!user
+  }
+
+  async signin(email: EmailString, password: string) {
+    const user = await this.userRepository.findOneBy({ email });
+    const passwordsMatch = await bcrypt.compare(password, user.password);
+
+    if (!passwordsMatch) {
+      throw new UnauthorizedException('Incorrect password')
+    }
+
   }
 
 }
