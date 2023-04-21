@@ -1,4 +1,4 @@
-import {Body, Injectable} from "@nestjs/common";
+import {Injectable} from "@nestjs/common";
 import {UserService} from "../user/user.service";
 import {EmailString} from "@shop/shared-ts";
 import * as bcrypt from 'bcrypt'
