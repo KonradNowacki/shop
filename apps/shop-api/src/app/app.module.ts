@@ -1,33 +1,25 @@
-import {MiddlewareConsumer, Module, NestModule} from "@nestjs/common";
+import {Module} from "@nestjs/common";
 import {UserModule} from "./domains/user/user.module";
 import {TypeOrmModule} from "@nestjs/typeorm";
 import {User} from "./domains/user/user.entity";
-import {JwtModule} from "@nestjs/jwt";
+import {ProductModule} from "./domains/product/product.module";
+import {Product} from "./domains/product/product.entity";
+import {AuthModule} from "./domains/auth/auth.module";
 
 @Module({
   imports: [
     UserModule,
+    ProductModule,
+    AuthModule,
 
     TypeOrmModule.forRoot({
       type: 'sqlite',
       database: 'db.sqlite',
-      entities: [User],
+      entities: [User, Product],
       synchronize: true,
-    }),
-
-    JwtModule.register({
-      global: true,
-      secret: 'JWT_SECRET', // TODO KN Move outside of code
-      signOptions: { expiresIn: '60s' },
     }),
   ],
 })
-export class AppModule implements NestModule {
-  configure(consumer: MiddlewareConsumer): any {
-    // TODO KN Use it when middleware is ready
-    // consumer.apply(AuthMiddleware).forRoutes({
-    //   path: '*'
-    // })
-  }
+export class AppModule {
 
 }

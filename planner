@@ -1,7 +1,7 @@
 [DONE] Connect DB
-[IN PROGRESS] Signup a new user
-[] signin a new user
-[] Encrypt password signup
+[DONE] Signup a new user
+[DONE] signin a new user
+[DONE] Encrypt password signup
 [DONE] add EmailString with an nx library
 
 [] Handle JWT
@@ -13,3 +13,26 @@
 [] Add unit tests backend
 [] Add unit tests frontend
 [] Add e2e tests
+
+[] Add Design System - nx lib + storybook
+[] Add dark/light mode
+[] Add responsive view
+
+
+// Stories
+1. Products
+  - a VISITOR can see all public products
+  - a VISITOR can add products to his cart
+  - a VISITOR can sort, filter and paginate products by category
+
+  - a USER can add a new product for sale
+  - a USER can adda new product for sale with a picture
+  - a USER can edit his products
+  - a USER can delete his products
+  - a USER can save products as drafts (not public)
+  - a USER can add products to cart and buy the products
+  - a USER can see history of bought products
+  - a USER can see history of sold products
+
+  - an ADMIN can block users
+  - an ADMIN can see statistics panel

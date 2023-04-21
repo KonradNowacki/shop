@@ -1,4 +1,4 @@
-import {Injectable, NotAcceptableException, UnauthorizedException} from "@nestjs/common";
+import {Injectable, NotAcceptableException} from "@nestjs/common";
 
 import {InjectRepository} from "@nestjs/typeorm";
 import {User} from "./user.entity";
@@ -17,7 +17,7 @@ export class UserService {
   ) {
   }
 
-  async createUser(email: EmailString, password: string) {
+  async createUser(email: EmailString, password: string): Promise<User> {
 
     // Check if email unique
     const emailExists = await this.emailExists(email);
@@ -26,12 +26,11 @@ export class UserService {
     }
 
     // Hash password
-    const salt = 11;
+    const salt = await bcrypt.genSalt(11);
     password = await bcrypt.hash(password, salt);
 
     // Generate email activation code
     const emailActivationCode = uuid();
-
 
     // Create user
     const user = this.userRepository.create({
@@ -47,18 +46,12 @@ export class UserService {
   }
 
   async emailExists(email: EmailString): Promise<boolean> {
-    const user = await this.userRepository.findBy({ email });
+    const user = await this.userRepository.findOneBy({ email });
     return !!user
   }
 
-  async signin(email: EmailString, password: string) {
-    const user = await this.userRepository.findOneBy({ email });
-    const passwordsMatch = await bcrypt.compare(password, user.password);
-
-    if (!passwordsMatch) {
-      throw new UnauthorizedException('Incorrect password')
-    }
-
+  async findUserByEmail(email: EmailString): Promise<User> {
+    return await this.userRepository.findOneBy({ email })
   }
 
 }
