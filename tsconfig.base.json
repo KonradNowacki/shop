@@ -15,7 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@shop/shared-ts": ["libs/shared-ts/src/index.ts"]
+      "@shop/shared-ts": ["libs/shared-ts/src/index.ts"],
+      "@shop/shop-host-ui": ["libs/shop-host-ui/src/index.ts"],
+      "@shop/ui": ["libs/ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
