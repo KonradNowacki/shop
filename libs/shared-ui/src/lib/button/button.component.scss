@@ -1,0 +1,15 @@
+:host {
+  height: 40px;
+  padding: 0 24px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: none;
+
+  &.basic {
+    background: red;
+  }
+
+  &.outline {
+    border: 2px solid red;
+  }
+}
