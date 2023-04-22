@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NxWelcomeComponent } from './nx-welcome.component';
+import { NavbarComponent } from "@shop/shop-host-lib";
+
 
 @Component({
   standalone: true,
-  imports: [NxWelcomeComponent, RouterModule],
+  imports: [RouterModule, NavbarComponent],
   selector: 'shop-root',
-  template: `<shop-nx-welcome></shop-nx-welcome>
+  template: `
+    <shop-navbar></shop-navbar>
     <router-outlet></router-outlet>`,
   styles: [''],
 })
