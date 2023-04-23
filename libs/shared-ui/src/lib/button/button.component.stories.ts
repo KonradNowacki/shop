@@ -1,4 +1,4 @@
-import {Meta, Story} from '@storybook/angular';
+import {Meta} from '@storybook/angular';
 import { ButtonComponent } from './button.component';
 
 export default {
@@ -6,13 +6,22 @@ export default {
   component: ButtonComponent,
 } as Meta<ButtonComponent>;
 
-const Button: Story<ButtonComponent> = (args: ButtonComponent) => ({
-  template: '<button shop-button [type]="type">Button</button>',
-  props: args,
-})
+export const Button = {
+  render: (args: ButtonComponent) => ({
+    template: '<button shop-button [type]="type" [color]="color">Primary</button>',
+    props: args,
+  }),
+  argTypes: {
+    type: {
+      options: ['basic', 'outline'],
+      control: { type: 'radio' },
+      default: 'basic'
+    },
+    color: {
+      options: ['primary', 'secondary', 'success' , 'warn' , 'error'],
+      control: { type: 'radio' },
+    },
+  },
+};
 
-export const Basic = Button.bind({});
-Basic.args = { type: 'basic' }
 
-export const Outline = Button.bind({});
-Outline.args = { type: 'outline' }

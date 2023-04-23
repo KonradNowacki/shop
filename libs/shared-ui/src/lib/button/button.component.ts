@@ -11,5 +11,12 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./button.component.scss']
 })
 export class ButtonComponent {
-  @Input() @HostBinding('class') type: 'basic' | 'outline' = 'basic';
+  @Input()
+  color: 'primary' | 'secondary' | 'success' | 'warn' | 'error' = 'primary';
+  @Input() type: 'basic' | 'outline' = 'basic';
+
+  @HostBinding('class')
+  get buttonClass() {
+    return `${this.type}--${this.color}`
+  }
 }
