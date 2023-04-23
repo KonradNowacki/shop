@@ -1,5 +1,6 @@
 import {Component, HostBinding, Input} from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {Colors, ColorTypeClass, Types} from "./button.model";
 
 @Component({
   selector: '[shop-button]',
@@ -11,12 +12,11 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./button.component.scss']
 })
 export class ButtonComponent {
-  @Input()
-  color: 'primary' | 'secondary' | 'success' | 'warn' | 'error' = 'primary';
-  @Input() type: 'basic' | 'outline' = 'basic';
+  @Input() color: Colors = 'primary';
+  @Input() type: Types = 'basic';
 
   @HostBinding('class')
-  get buttonClass() {
+  get buttonClass(): ColorTypeClass {
     return `${this.type}--${this.color}`
   }
 }
