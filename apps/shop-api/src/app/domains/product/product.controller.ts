@@ -1,9 +1,10 @@
-import {Body, Controller, Logger, Post, UseGuards} from "@nestjs/common";
+import {Body, Controller, Get, Logger, Post, UseGuards} from "@nestjs/common";
 import {ProductService} from "./product.service";
 import {CreateProductDto} from "./dto/create-product.dto";
 import {AuthGuard} from "@nestjs/passport";
 import {LocalAuthGuard} from "../auth/local-auth.guard";
 import {JwtAuthGuard} from "../auth/jwt-auth.guard";
+import {Product} from "./product.entity";
 
 @Controller('products')
 export class ProductController {
@@ -11,12 +12,17 @@ export class ProductController {
   constructor(private readonly productService: ProductService) {
   }
 
-  // Should be guarded to user only
   @Post()
   @UseGuards(JwtAuthGuard)
-  async createProduct(@Body() { name, price }: CreateProductDto) {
+  async createProduct(@Body() { name, price }: CreateProductDto): Promise<Product> {
     this.logger.log(`${ProductController.name} invoked signup createProduct name ${name}`)
     return await this.productService.createProduct(name, price)
+  }
+
+  @Get()
+  async getPublicProducts(): Promise<Product[]> {
+    this.logger.log(`${ProductController.name} invoked getPublicProducts`);
+    return await this.productService.getPublicProducts();
   }
 
 }

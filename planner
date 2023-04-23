@@ -4,17 +4,17 @@
 [DONE] Encrypt password signup
 [DONE] add EmailString with an nx library
 
-[] Handle JWT
-[] Check JWT with example endpoint
-[] Add Angular host
+[DONE] Handle JWT
+[DONE] Check JWT with example endpoint
+[DONE] Add Angular host
 [] Add Angular remote list of all products
-[] Add Navbar + storybook as library (read on libraries)
+[DONE] Add Navbar + storybook as library (read on libraries)
 
 [] Add unit tests backend
 [] Add unit tests frontend
 [] Add e2e tests
 
-[] Add Design System - nx lib + storybook
+[DONE] Add Design System - nx lib + storybook
 [] Add dark/light mode
 [] Add responsive view
 
