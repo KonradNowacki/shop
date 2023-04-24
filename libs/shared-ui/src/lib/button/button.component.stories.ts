@@ -8,7 +8,7 @@ export default {
 
 export const Button = {
   render: (args: ButtonComponent) => ({
-    template: '<button shop-button [type]="type" [color]="color">Primary</button>',
+    template: '<button shop-button [type]="type" [color]="color">Button</button>',
     props: args,
   }),
   argTypes: {

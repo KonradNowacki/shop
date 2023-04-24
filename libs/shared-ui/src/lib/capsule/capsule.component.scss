@@ -1,0 +1,50 @@
+$primary: blue;
+$secondary: #7e7e7e;
+$success: #20fa20;
+$warn: #ecec31;
+$error: red;
+
+@mixin outline-hover-active($color) {
+  background: $color;
+  cursor: pointer;
+  color: white;
+  border: 2px solid $color;
+}
+
+@mixin outline($color) {
+  border: 2px solid $color;
+  color: $color;
+  background: white;
+}
+
+@mixin basic($color) {
+  background: $color;
+  color: white;
+}
+
+:host {
+  height: 40px;
+  padding: 0 24px;
+  font-size: 1rem;
+  border-radius: 20px;
+  border: none;
+
+
+
+  &.basic {
+    &--primary { @include basic($primary) }
+    &--secondary { @include basic($secondary) }
+    &--warn { @include basic($warn) }
+    &--success { @include basic($success) }
+    &--error { @include basic($error) }
+  }
+
+  &.outline {
+    &--primary { @include outline($primary) }
+    &--secondary { @include outline($secondary) }
+    &--warn { @include outline($warn) }
+    &--success { @include outline($success) }
+    &--error { @include outline($error) }
+  }
+
+}

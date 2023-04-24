@@ -10,7 +10,7 @@ import { NavbarComponent } from "@shop/shop-host-lib";
   template: `
     <shop-navbar></shop-navbar>
     <router-outlet></router-outlet>`,
-  styles: [''],
+  styles: [``],
 })
 export class AppComponent {
   title = 'shop-host';
