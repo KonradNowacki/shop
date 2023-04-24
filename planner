@@ -19,6 +19,9 @@
 [] Add responsive view
 
 
+[] MOVE SECRETS & PASSWORDS OUTSIDE THE CODE
+
+
 // Stories
 1. Products
   - a VISITOR can see all public products

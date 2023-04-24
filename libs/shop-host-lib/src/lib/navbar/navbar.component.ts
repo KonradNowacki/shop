@@ -5,7 +5,13 @@ import { CommonModule } from '@angular/common';
   selector: 'shop-navbar',
   standalone: true,
   imports: [CommonModule],
-  template: `<p>navbar works!</p>`,
-  styles: [],
+  template: `<nav></nav>`,
+  styles: [
+    `nav {
+      width: 100%;
+      height: 50px;
+      background-color: red;
+    }`
+  ],
 })
 export class NavbarComponent {}
