@@ -29,8 +29,8 @@ export class UserController {
 
   @UseGuards(LocalAuthGuard)
   @Post('signin')
-  async signin(@Body() {email, password}: SigninDto) {
-    console.log(email, password)
+  async signin(@Body() {email}: SigninDto) {
+    this.logger.log(`${UserController.name} invoked signin with email ${email}`)
     return this.authService.login()
   }
 

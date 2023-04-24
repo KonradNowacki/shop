@@ -25,6 +25,12 @@ export class UserService {
       throw new NotAcceptableException(`Email ${email} already exists in db`)
     }
 
+    // TODO Add password validation
+    // Min 8 chars
+    // Min 1 capital
+    // Min 1 special
+    // Min 1 number
+
     // Hash password
     const salt = await bcrypt.genSalt(11);
     password = await bcrypt.hash(password, salt);

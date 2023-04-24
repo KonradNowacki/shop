@@ -26,8 +26,6 @@ describe('ProductController', () => {
     it('should return the created product', async () => {
       // GIVEN
       const product: Product = { id: 666, price: 999, name: 'Product 1' };
-      // const product2: Product = { id: 111, price: 222, name: 'Product 2' };
-      // const expectedResult = [product1, product2];
 
       jest.spyOn(productService, 'createProduct').mockReturnValueOnce(Promise.resolve(product));
 

@@ -1,8 +1,6 @@
 import {Body, Controller, Get, Logger, Post, UseGuards} from "@nestjs/common";
 import {ProductService} from "./product.service";
 import {CreateProductDto} from "./dto/create-product.dto";
-import {AuthGuard} from "@nestjs/passport";
-import {LocalAuthGuard} from "../auth/local-auth.guard";
 import {JwtAuthGuard} from "../auth/jwt-auth.guard";
 import {Product} from "./product.entity";
 
