@@ -9,7 +9,7 @@ import {Colors, ColorTypeClass, Types} from "./capsule.model";
 @Component({
   selector: 'button[shop-capsule]',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   template: `<ng-content></ng-content>`,
   styleUrls: ['./capsule.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

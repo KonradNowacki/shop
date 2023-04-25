@@ -7,7 +7,7 @@ export const appRoutes: Route[] = [
     loadChildren: () => import('shop-all-products/Routes').then((m) => m.remoteRoutes),
   },
   {
-    path: '',
+    path: 'home',
     component: AppComponent,
   },
 ];
