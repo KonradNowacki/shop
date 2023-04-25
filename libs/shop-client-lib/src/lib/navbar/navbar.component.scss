@@ -1,0 +1,17 @@
+nav {
+  height: 60px;
+  padding: 0 30px;
+  border-bottom: 2px solid red;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .left-side {
+    display: flex;
+  }
+
+  .right-side {
+    display: flex;
+    gap: 10px;
+  }
+}

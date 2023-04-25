@@ -17,8 +17,7 @@
     "paths": {
       "@shop/shared-ts": ["libs/shared-ts/src/index.ts"],
       "@shop/shared-ui": ["libs/shared-ui/src/index.ts"],
-      "@shop/shop-host-lib": ["libs/shop-host-lib/src/index.ts"],
-      "@shop/shop-host-ui": ["libs/shop-host-ui/src/index.ts"]
+      "@shop/shop-client-lib": ["libs/shop-client-lib/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
