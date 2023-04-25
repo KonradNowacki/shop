@@ -1,19 +1,4 @@
-export * from './../pages/navbar/navbar.component';
-
-export * from './../pages/signup/signup.component';
-
-export * from './../pages/signin/signin.component';
-
-export * from './../pages/product-list/product-list.component';
-
-export * from './../pages/product-details/product-details.component';
-
-export * from './lib/pages/product-details/product-details.component';
-
-export * from './lib/pages/products-list/products-list.component';
-
-export * from './lib/pages/signup/signup.component';
-
-export * from './lib/pages/signin/signin.component';
-
-export * from './lib/pages/home/home.component';
+export * from './lib/pages/signup/feature/signup-shell/signup-shell.component';
+export * from './lib/pages/signin/feature/signin-shell/signin-shell.component';
+export * from './lib/pages/products-list/feature/products-list-shell/products-list-shell.component';
+export * from './lib/pages/product-details/feature/product-details-shell/product-details-shell.component';
