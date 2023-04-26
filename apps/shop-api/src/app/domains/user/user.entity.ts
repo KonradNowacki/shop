@@ -1,4 +1,15 @@
-import {AfterInsert, AfterRemove, AfterUpdate, Column, Entity, PrimaryGeneratedColumn} from "typeorm";
+import {
+  AfterInsert,
+  AfterRemove,
+  AfterUpdate,
+  Column,
+  Entity,
+  JoinColumn,
+  OneToMany,
+  PrimaryGeneratedColumn
+} from "typeorm";
+import {EmailString} from "@shop/shared-ts";
+import {Product} from "../product/product.entity";
 
 @Entity()
 export class User {
@@ -18,7 +29,12 @@ export class User {
   @Column({ default: false })
   isActive: boolean;
 
-
+  @OneToMany(
+    type => Product, product => product.owner,
+    { nullable: true }
+  )
+  @JoinColumn()
+  products: Product[];
 
 
 

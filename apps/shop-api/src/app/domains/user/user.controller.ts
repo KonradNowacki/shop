@@ -31,7 +31,7 @@ export class UserController {
   @Post('signin')
   async signin(@Body() {email}: SigninDto) {
     this.logger.log(`${UserController.name} invoked signin with email ${email}`)
-    return this.authService.login()
+    return this.authService.login(email)
   }
 
 }
