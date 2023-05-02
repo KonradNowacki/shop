@@ -14,8 +14,9 @@ import {
   TRANSLOCO_LOADER,
   translocoConfig,
   TranslocoLoader,
-  TranslocoModule
+  TranslocoModule, TranslocoService
 } from "@ngneat/transloco";
+import {ErrorKey} from "@shop/shared-ts";
 
 @Injectable({ providedIn: 'root' })
 export class TranslocoHttpLoader implements TranslocoLoader {
@@ -32,17 +33,6 @@ bootstrapApplication(AppComponent, {
     provideRouter(appRoutes, withEnabledBlockingInitialNavigation()),
     provideHttpClient(),
 
-    provideErrorTailorConfig({
-      errors: {
-        useValue: {
-          required: 'This field is required',
-          // minlength: ({ requiredLength, actualLength }) =>
-          //   `Expect ${requiredLength} but got ${actualLength}`,
-          // invalidAddress: error => `Address isn't valid`
-        }
-      },
-    }),
-
 
     importProvidersFrom(TranslocoModule),
     {
@@ -54,6 +44,22 @@ bootstrapApplication(AppComponent, {
         prodMode: !isDevMode(),
       }),
     },
-    { provide: TRANSLOCO_LOADER, useClass: TranslocoHttpLoader }
+    { provide: TRANSLOCO_LOADER, useClass: TranslocoHttpLoader },
+
+
+    provideErrorTailorConfig({
+      errors: {
+        useFactory: (t: TranslocoService) => {
+          return {
+            [ErrorKey.REQUIRED]: () => t.translate(`error.${ErrorKey.REQUIRED}`),
+            [ErrorKey.MIN_LENGTH]: ({ requiredLength }) =>  t.translate(`error.${ErrorKey.MIN_LENGTH}`, { requiredLength }),
+            [ErrorKey.SPECIAL_CHAR_REQUIRED]: () => t.translate(`error.${ErrorKey.SPECIAL_CHAR_REQUIRED}`),
+            [ErrorKey.CAPITAL_LETTER_REQUIRED]: () => t.translate(`error.${ErrorKey.CAPITAL_LETTER_REQUIRED}`),
+            [ErrorKey.NUMBER_REQUIRED]: () => t.translate(`error.${ErrorKey.NUMBER_REQUIRED}`)
+          }
+        },
+        deps: [TranslocoService]
+      },
+    }),
   ],
 }).catch((err) => console.error(err));

@@ -6,5 +6,9 @@
   "label.password": "Password",
   "label.repeat-password": "Repeat password",
 
-  "error.field-required": "This field is required"
+  "error.required": "This field is required",
+  "error.minlength": "Mininum length of {{ requiredLength }} is required",
+  "error.number-required": "At least one digit is required",
+  "error.capital-letter-required": "At least one capital letter is required",
+  "error.special-char-required": "At least one special character is required"
 }

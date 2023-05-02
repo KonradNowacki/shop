@@ -16,7 +16,7 @@ import {ControlErrorAnchorDirective, ControlErrorsDirective} from "@ngneat/error
         [formControl]="control"
         class="input__field"
         [type]="type"
-        [ngClass]="{'input__field--error': true}"
+        [ngClass]="{'input__field--error': control.invalid && control.touched}"
         [controlErrorAnchor]="anchor"
       >
       <div class="input__hint" *ngIf="hint">{{ hint }}</div>
@@ -37,13 +37,12 @@ import {ControlErrorAnchorDirective, ControlErrorsDirective} from "@ngneat/error
 })
 export class InputComponent implements OnInit {
 
-  // TODO KN Error message should be provided by external directive??? Knows error and attaches
   protected isRequired = false
   @Input() type: 'text' | 'number' = 'text';
   @Input() label = '';
   @Input() hint = '';
 
-  @Input() control: FormControl | any = new FormControl('');
+  @Input() control!: FormControl;
 
   ngOnInit() {
     this.isRequired = this.control.hasValidator(Validators.required)
