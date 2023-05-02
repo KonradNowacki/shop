@@ -21,6 +21,7 @@
     "@nestjs/platform-express": "^9.0.0",
     "@nestjs/typeorm": "^9.0.1",
     "@ngneat/error-tailor": "^4.0.0",
+    "@ngneat/transloco": "^4.2.6",
     "@nrwl/angular": "^15.9.2",
     "@storybook/angular": "^7.0.6",
     "@types/cookie-parser": "^1.4.3",

@@ -3,6 +3,7 @@ import {AuthCardComponent, ButtonComponent, InputComponent} from "@shop/shared-u
 import {SignupModel, TypedFormGroup} from "@shop/shared-ts";
 import {FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {errorTailorImports} from "@ngneat/error-tailor";
+import {TranslocoModule} from "@ngneat/transloco";
 
 @Component({
   selector: 'shop-signup-card',
@@ -38,7 +39,7 @@ import {errorTailorImports} from "@ngneat/error-tailor";
 
           <button
             shop-button
-          >Sign up
+          >{{ 'button.signup' | transloco }}
           </button>
         </div>
 
@@ -47,7 +48,7 @@ import {errorTailorImports} from "@ngneat/error-tailor";
   `,
   styleUrls: ['./signup-card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [AuthCardComponent, InputComponent, ButtonComponent, ReactiveFormsModule, errorTailorImports],
+  imports: [AuthCardComponent, InputComponent, ButtonComponent, ReactiveFormsModule, errorTailorImports, TranslocoModule],
 })
 export class SignupCardComponent {
   @Input() form!: FormGroup<TypedFormGroup<SignupModel>>;

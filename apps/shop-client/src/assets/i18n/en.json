@@ -1,0 +1,10 @@
+{
+  "button.signup": "Sign up",
+  "button.signin": "Sign in",
+
+  "label.email": "Email",
+  "label.password": "Password",
+  "label.repeat-password": "Repeat password",
+
+  "error.field-required": "This field is required"
+}
