@@ -13,8 +13,12 @@ import {AuthModule} from "./domains/auth/auth.module";
     AuthModule,
 
     TypeOrmModule.forRoot({
-      type: 'sqlite',
-      database: 'db.sqlite',
+      type: 'postgres',
+      host: 'localhost',
+      port: 5432,
+      username: 'postgres',
+      password: '123',
+      database: 'shop',
       entities: [User, Product],
       synchronize: true,
     }),

@@ -14,7 +14,7 @@ $error: red;
 @mixin outline($color) {
   border: 2px solid $color;
   color: $color;
-  background: white;
+  background: transparent;
   &:hover { @include outline-hover-active(lighten($color, 15%)) }
   &:active { @include outline-hover-active(lighten($color, 25%)) }
 }

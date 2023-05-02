@@ -1,0 +1,38 @@
+.input {
+  display: flex;
+  flex-direction: column;
+
+  &__label {
+    position: relative;
+    display: block;
+
+    span {
+      color: red;
+      font-size: 1.2rem;
+    }
+  }
+
+  &__field {
+    all: unset;
+    height: 40px;
+    border: 1px solid var(--color-primary);
+    padding: 3px 8px;
+    border-radius: var(--border-radius-small);
+    flex-grow: 100;
+    margin-block: 2px;
+
+    &:focus {
+      border: 2px solid var(--color-primary);
+    }
+
+    &--error {
+      border: 1px solid var(--color-error);
+    }
+
+  }
+
+  &__error {
+    color: var(--color-error);
+  }
+
+}

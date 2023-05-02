@@ -1,9 +1,10 @@
 import {Injectable} from "@nestjs/common";
 import {InjectRepository} from "@nestjs/typeorm";
-import {Repository} from "typeorm";
+import {Between, Repository} from "typeorm";
 import {Product} from "./product.entity";
-import {EmailString} from "@shop/shared-ts";
+import {EmailString, ProductCategory} from "@shop/shared-ts";
 import {UserService} from "../user/user.service";
+import {FindManyOptions} from "typeorm/find-options/FindManyOptions";
 
 @Injectable()
 export class ProductService {
@@ -14,22 +15,36 @@ export class ProductService {
   ) {
   }
 
-  async createProduct(name: string, price: number, email: EmailString) {
+  async createProduct(name: string, price: number, category: ProductCategory, email: EmailString) {
     const owner = await this.userService.findUserByEmail(email);
-    const product = this.productRepository.create({ name, price, owner });
-    return await this.productRepository.save(product);
+    const product = this.productRepository.create({ name, price, owner, category });
+    return await this.productRepository.save(product, { transaction: true });
   }
 
-  async getPublicProducts(): Promise<Product[]> {
-    return await this.productRepository.find();
-  }
-
-  async getLoggedUsersProducts(email: EmailString): Promise<Product[]> {
-    const owner = await this.userService.findUserByEmail(email);
+  async getPublicProducts(
+    ownerEmail: EmailString,
+    category: ProductCategory,
+    minPrice = 0, maxPrice = 999999,
+    limit: number
+    ): Promise<Product[]> {
+    const owner = await this.userService.findUserByEmail(ownerEmail);
 
     return await this.productRepository.find({
-      where: { owner }
-    })
+      where: {
+        category,
+        price: Between(minPrice, maxPrice),
+        owner
+      },
+      take: limit
+    });
   }
+
+  // async getLoggedUsersProducts(email: EmailString): Promise<Product[]> {
+  //   const owner = await this.userService.findUserByEmail(email);
+  //
+  //   return await this.productRepository.find({
+  //     where: { owner }
+  //   })
+  // }
 
 }

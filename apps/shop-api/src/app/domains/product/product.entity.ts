@@ -1,5 +1,6 @@
 import {Column, Entity, JoinColumn, JoinTable, ManyToOne, PrimaryGeneratedColumn} from "typeorm";
 import {User} from "../user/user.entity";
+import {ProductCategory} from "../../../../../../libs/shared-ts/src/lib/product-category.enum";
 
 @Entity()
 export class Product {
@@ -12,6 +13,13 @@ export class Product {
 
   @Column()
   price: number;
+
+  @Column({
+    type: 'enum',
+    enum: ProductCategory,
+    nullable: false
+  })
+  category: string;
 
   @ManyToOne(type => User)
   @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })
