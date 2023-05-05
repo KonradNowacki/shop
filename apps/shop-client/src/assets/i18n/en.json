@@ -7,8 +7,10 @@
   "label.repeat-password": "Repeat password",
 
   "error.required": "This field is required",
-  "error.minlength": "Mininum length of {{ requiredLength }} is required",
+  "error.email": "Incorrect email format",
+  "error.minlength": "Minimum length of {{ requiredLength }} is required",
   "error.number-required": "At least one digit is required",
   "error.capital-letter-required": "At least one capital letter is required",
-  "error.special-char-required": "At least one special character is required"
+  "error.special-char-required": "At least one special character is required",
+  "error.email-not-unique": "User with such e-mail already exists"
 }

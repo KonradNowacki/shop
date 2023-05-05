@@ -5,18 +5,26 @@ import {
 } from '@angular/router';
 import { appRoutes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
-import {provideErrorTailorConfig} from "@ngneat/error-tailor";
-import {importProvidersFrom, inject, Injectable, isDevMode} from "@angular/core";
-import {HttpClient, provideHttpClient} from "@angular/common/http";
+import { provideErrorTailorConfig } from '@ngneat/error-tailor';
+import {
+  importProvidersFrom,
+  inject,
+  Injectable,
+  isDevMode,
+} from '@angular/core';
+import { HttpClient, provideHttpClient } from '@angular/common/http';
 import {
   Translation,
   TRANSLOCO_CONFIG,
   TRANSLOCO_LOADER,
   translocoConfig,
   TranslocoLoader,
-  TranslocoModule, TranslocoService
-} from "@ngneat/transloco";
-import {ErrorKey} from "@shop/shared-ts";
+  TranslocoModule,
+  TranslocoService,
+} from '@ngneat/transloco';
+import { ErrorKey } from '@shop/shared-ts';
+import { provideStore, provideState } from '@ngrx/store';
+import { provideEffects } from '@ngrx/effects';
 
 @Injectable({ providedIn: 'root' })
 export class TranslocoHttpLoader implements TranslocoLoader {
@@ -28,11 +36,14 @@ export class TranslocoHttpLoader implements TranslocoLoader {
 }
 
 bootstrapApplication(AppComponent, {
-
   providers: [
+
+    provideEffects(),
+    provideStore(),
+
+
     provideRouter(appRoutes, withEnabledBlockingInitialNavigation()),
     provideHttpClient(),
-
 
     importProvidersFrom(TranslocoModule),
     {
@@ -46,19 +57,27 @@ bootstrapApplication(AppComponent, {
     },
     { provide: TRANSLOCO_LOADER, useClass: TranslocoHttpLoader },
 
-
     provideErrorTailorConfig({
       errors: {
         useFactory: (t: TranslocoService) => {
           return {
-            [ErrorKey.REQUIRED]: () => t.translate(`error.${ErrorKey.REQUIRED}`),
-            [ErrorKey.MIN_LENGTH]: ({ requiredLength }) =>  t.translate(`error.${ErrorKey.MIN_LENGTH}`, { requiredLength }),
-            [ErrorKey.SPECIAL_CHAR_REQUIRED]: () => t.translate(`error.${ErrorKey.SPECIAL_CHAR_REQUIRED}`),
-            [ErrorKey.CAPITAL_LETTER_REQUIRED]: () => t.translate(`error.${ErrorKey.CAPITAL_LETTER_REQUIRED}`),
-            [ErrorKey.NUMBER_REQUIRED]: () => t.translate(`error.${ErrorKey.NUMBER_REQUIRED}`)
-          }
+            [ErrorKey.REQUIRED]: () =>
+              t.translate(`error.${ErrorKey.REQUIRED}`),
+            [ErrorKey.EMAIL]: () =>
+              t.translate(`error.${ErrorKey.EMAIL}`),
+            [ErrorKey.MIN_LENGTH]: ({ requiredLength }) =>
+              t.translate(`error.${ErrorKey.MIN_LENGTH}`, { requiredLength }),
+            [ErrorKey.SPECIAL_CHAR_REQUIRED]: () =>
+              t.translate(`error.${ErrorKey.SPECIAL_CHAR_REQUIRED}`),
+            [ErrorKey.CAPITAL_LETTER_REQUIRED]: () =>
+              t.translate(`error.${ErrorKey.CAPITAL_LETTER_REQUIRED}`),
+            [ErrorKey.NUMBER_REQUIRED]: () =>
+              t.translate(`error.${ErrorKey.NUMBER_REQUIRED}`),
+            [ErrorKey.EMAIL_NOT_UNIQUE]: () =>
+              t.translate(`error.${ErrorKey.EMAIL_NOT_UNIQUE}`),
+          };
         },
-        deps: [TranslocoService]
+        deps: [TranslocoService],
       },
     }),
   ],

@@ -2,8 +2,10 @@ import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {AuthCardComponent, ButtonComponent, InputComponent} from "@shop/shared-ui";
 import {SignupCardComponent} from "../../ui/signup-card/signup-card.component";
 import {SignupService} from "../../data-access/signup.service";
-import {SignupModel} from "@shop/shared-ts";
+
 import {SignupForm} from "../../utils/signup.form";
+import {SignupModel} from "../../+state/signup.model";
+import {SignupFacade} from "../../+state/signup.facade";
 
 @Component({
   selector: 'shop-signup-shell',
@@ -24,7 +26,7 @@ import {SignupForm} from "../../utils/signup.form";
     SignupCardComponent
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [SignupService, SignupForm]
+  providers: [SignupService, SignupForm, SignupFacade]
 })
 export class SignupShellComponent {
 
@@ -32,6 +34,7 @@ export class SignupShellComponent {
   private readonly signupService = inject(SignupService);
 
   submitForm(payload: SignupModel): void {
+    console.log('from shell')
     this.signupService.submit(payload)
   }
 

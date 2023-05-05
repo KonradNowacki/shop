@@ -1,15 +1,14 @@
-import {Injectable} from "@angular/core";
-import {SignupModel} from "@shop/shared-ts";
+import {inject, Injectable} from "@angular/core";
+import {SignupModel} from "../+state/signup.model";
+import {SignupFacade} from "../+state/signup.facade";
 
 @Injectable()
 export class SignupService {
-
-  // TODO Invoke store faccade effect
+  private readonly signupFacade = inject(SignupFacade);
 
   submit(payload: SignupModel): void {
-
-    // Store facade
-
+    console.log('from facade')
+    this.signupFacade.createUser(payload);
   }
 
 }

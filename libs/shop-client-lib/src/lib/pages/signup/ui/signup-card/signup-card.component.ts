@@ -1,9 +1,10 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
 import {AuthCardComponent, ButtonComponent, InputComponent} from "@shop/shared-ui";
-import {SignupModel, TypedFormGroup} from "@shop/shared-ts";
+import {TypedFormGroup} from "@shop/shared-ts";
 import {FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {errorTailorImports} from "@ngneat/error-tailor";
 import {TranslocoModule} from "@ngneat/transloco";
+import {SignupModel} from "../../+state/signup.model";
 
 @Component({
   selector: 'shop-signup-card',
@@ -15,6 +16,7 @@ import {TranslocoModule} from "@ngneat/transloco";
           <shop-input
             [label]="'E-mail'"
             [control]="form.controls.email"
+            type="email"
           ></shop-input>
 
           <shop-input
@@ -55,7 +57,10 @@ export class SignupCardComponent {
   @Output() readonly submitForm = new EventEmitter<SignupModel>();
 
   protected submit(): void {
-    console.log(this.form.value)
+    if (this.form.valid) {
+      const payload = this.form.value as SignupModel
+      this.submitForm.emit(payload)
+    }
   }
 
 }

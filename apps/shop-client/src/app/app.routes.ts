@@ -2,12 +2,11 @@ import { Route } from '@angular/router';
 import {
   ProductDetailsShellComponent,
   ProductsListShellComponent,
-  SigninShellComponent,
-  SignupShellComponent
+  SigninShellComponent, signupRoutes,
 } from "@shop/shop-client-lib";
 
 export const appRoutes: Route[] = [
-  { path: 'signup', component: SignupShellComponent },
+  { path: 'signup', children: signupRoutes },
   { path: 'signin', component: SigninShellComponent },
   { path: 'products', component: ProductsListShellComponent },
   { path: 'products/:productId', component: ProductDetailsShellComponent },
