@@ -69,7 +69,11 @@ export class SignupForm {
         take(1),
         switchMap(email => {
           return this.authService.isEmailUnique(email).pipe(
-            map(res => res ? { [ErrorKey.EMAIL_NOT_UNIQUE]: true } : null)
+            map(res => res ? { [ErrorKey.EMAIL_NOT_UNIQUE]: true } : null),
+            catchError(() => {
+              return EMPTY
+              // TODO KN handle error
+          })
           )
         })
       )

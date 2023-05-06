@@ -14,4 +14,10 @@ nav {
     display: flex;
     gap: 10px;
   }
+
+  .logged-as {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }

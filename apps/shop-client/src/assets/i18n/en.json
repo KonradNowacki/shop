@@ -12,5 +12,7 @@
   "error.number-required": "At least one digit is required",
   "error.capital-letter-required": "At least one capital letter is required",
   "error.special-char-required": "At least one special character is required",
-  "error.email-not-unique": "User with such e-mail already exists"
+  "error.email-not-unique": "User with such e-mail already exists",
+
+  "text.logged-as": "Logges as {{ email }}"
 }

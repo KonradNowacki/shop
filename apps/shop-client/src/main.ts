@@ -25,6 +25,8 @@ import {
 import { ErrorKey } from '@shop/shared-ts';
 import { provideStore, provideState } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
+import {JwtModule} from "@auth0/angular-jwt";
+
 
 @Injectable({ providedIn: 'root' })
 export class TranslocoHttpLoader implements TranslocoLoader {
@@ -45,7 +47,16 @@ bootstrapApplication(AppComponent, {
     provideRouter(appRoutes, withEnabledBlockingInitialNavigation()),
     provideHttpClient(),
 
-    importProvidersFrom(TranslocoModule),
+    importProvidersFrom(
+      TranslocoModule,
+      JwtModule.forRoot({
+        config: {
+          tokenGetter: () => localStorage.getItem('access_token'),
+        }
+      })
+    ),
+
+
     {
       provide: TRANSLOCO_CONFIG,
       useValue: translocoConfig({

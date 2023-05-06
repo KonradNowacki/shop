@@ -19,7 +19,6 @@ import {ControlErrorAnchorDirective, ControlErrorsDirective} from "@ngneat/error
         [ngClass]="{'input__field--error': control.invalid && control.touched}"
         [controlErrorAnchor]="anchor"
       >
-{{ control.errors | json }}
       <div class="input__hint" *ngIf="hint">{{ hint }}</div>
       <ng-template controlErrorAnchor #anchor="controlErrorAnchor"></ng-template>
 
