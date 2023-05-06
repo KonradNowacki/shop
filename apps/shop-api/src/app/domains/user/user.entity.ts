@@ -8,7 +8,6 @@ import {
   OneToMany,
   PrimaryGeneratedColumn
 } from "typeorm";
-import {EmailString} from "@shop/shared-ts";
 import {Product} from "../product/product.entity";
 
 @Entity()
@@ -30,7 +29,7 @@ export class User {
   isActive: boolean;
 
   @OneToMany(
-    type => Product, product => product.owner,
+    () => Product, product => product.owner,
     { nullable: true }
   )
   @JoinColumn()

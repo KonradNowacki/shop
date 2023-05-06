@@ -10,23 +10,25 @@ import {SignupModel} from "../../+state/signup.model";
   selector: 'shop-signup-card',
   standalone: true,
   template: `
-    <form [formGroup]="form" (ngSubmit)="submit()" errorTailor>
-      <shop-auth-card [title]="'Sign in'">
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <shop-auth-card [title]="'label.sign-up' | transloco">
         <div content>
           <shop-input
-            [label]="'E-mail'"
+            [label]="'label.e-mail' | transloco"
             [control]="form.controls.email"
             type="email"
           ></shop-input>
 
           <shop-input
-            [label]="'Password'"
+            [label]="'label.password' | transloco"
             [control]="form.controls.password"
+            type="password"
           ></shop-input>
 
           <shop-input
-            [label]="'Repeat password'"
+            [label]="'label.repeat-password' | transloco"
             [control]="form.controls.repeatedPassword"
+            type="password"
           ></shop-input>
         </div>
 
@@ -36,7 +38,7 @@ import {SignupModel} from "../../+state/signup.model";
             variant="outline"
             color="secondary"
             type="button"
-          >Cancel
+          >{{ 'button.cancel' | transloco }}
           </button>
 
           <button
@@ -57,6 +59,14 @@ export class SignupCardComponent {
   @Output() readonly submitForm = new EventEmitter<SignupModel>();
 
   protected submit(): void {
+
+    console.log('valid: ', this.form.valid, this.form.errors, this.form.value)
+    console.log('valid: ', this.form.controls.email.valid)
+    console.log('valid: ', this.form.controls.password.valid)
+    console.log('valid: ', this.form.controls.repeatedPassword.valid)
+
+    this.form.markAllAsTouched();
+
     if (this.form.valid) {
       const payload = this.form.value as SignupModel
       this.submitForm.emit(payload)

@@ -12,7 +12,6 @@ async function bootstrap() {
 
   app.enableCors({
     origin: 'http://localhost:4200', // TODO KN Address for angualr
-    credentials: true
   })
 
 

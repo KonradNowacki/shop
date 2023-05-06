@@ -39,7 +39,7 @@ import {ControlErrorAnchorDirective, ControlErrorsDirective} from "@ngneat/error
 export class InputComponent implements OnInit {
 
   protected isRequired = false
-  @Input() type: 'text' | 'number' | 'email' = 'text';
+  @Input() type: 'text' | 'number' | 'email' | 'password' = 'text';
   @Input() label = '';
   @Input() hint = '';
 

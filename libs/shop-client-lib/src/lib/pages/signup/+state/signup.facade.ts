@@ -9,7 +9,6 @@ export class SignupFacade {
   private readonly store = inject(Store);
 
   createUser(user: SignupModel): void {
-    console.log('from facade')
     this.store.dispatch(SignupActions.createuser({ user }))
   }
 

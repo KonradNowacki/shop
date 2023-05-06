@@ -34,7 +34,7 @@ export class SignupShellComponent {
   private readonly signupService = inject(SignupService);
 
   submitForm(payload: SignupModel): void {
-    console.log('from shell')
+    console.log('from SignupShellComponent')
     this.signupService.submit(payload)
   }
 

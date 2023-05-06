@@ -2,6 +2,9 @@ import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {AuthCardComponent, ButtonComponent, InputComponent} from "@shop/shared-ui";
 import {SigninCardComponent} from "../../ui/signin-card/signin-card.component";
 import {SigninService} from "../../data-access/signin.service";
+import {SigninModel} from "../../+state/signin.model";
+import {SigninFacade} from "../../+state/signin.facade";
+import {SigninForm} from "../../utils/signin.form";
 
 @Component({
   selector: 'shop-signin-shell',
@@ -9,23 +12,26 @@ import {SigninService} from "../../data-access/signin.service";
   imports: [AuthCardComponent, ButtonComponent, InputComponent, SigninCardComponent],
   template: `
     <main>
-<!--        <shop-signin-card-->
-<!--            (submitForm)="submitForm($event)"-->
-<!--        ></shop-signin-card>-->
+        <shop-signin-card
+            [form]="form"
+            (submitForm)="submitForm($event)"
+        ></shop-signin-card>
     </main>
   `,
   styleUrls: ['./signin-shell.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [SigninService]
+  providers: [SigninService, SigninFacade, SigninForm]
 })
 export class SigninShellComponent {
 
+  protected readonly form = inject(SigninForm).buildForm();
   private readonly signinService = inject(SigninService)
 
-  submitForm(): void {
+  submitForm(credentials: SigninModel): void {
 
-
-
+    if (this.form.valid) {
+      this.signinService.signin(credentials);
+    }
   }
 
 }

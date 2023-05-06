@@ -12,7 +12,7 @@ import {EmailString, ErrorKey, TypedFormGroup} from "@shop/shared-ts";
 import {SignupModel} from "../+state/signup.model";
 import {AuthService} from "../../../api/auth.service";
 import {UntilDestroy, untilDestroyed} from "@ngneat/until-destroy";
-import {debounceTime, distinctUntilChanged, map, switchMap} from "rxjs";
+import {catchError, debounceTime, distinctUntilChanged, EMPTY, map, switchMap, take, tap} from "rxjs";
 
 @UntilDestroy()
 @Injectable()
@@ -62,11 +62,11 @@ export class SignupForm {
 
   private isEmailUnique(): AsyncValidatorFn {
     return (control: AbstractControl) => {
-
       return control.valueChanges.pipe(
         untilDestroyed(this),
         distinctUntilChanged(),
         debounceTime(300),
+        take(1),
         switchMap(email => {
           return this.authService.isEmailUnique(email).pipe(
             map(res => res ? { [ErrorKey.EMAIL_NOT_UNIQUE]: true } : null)

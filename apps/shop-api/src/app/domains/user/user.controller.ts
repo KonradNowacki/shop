@@ -2,15 +2,13 @@ import {
   Body,
   Controller,
   Logger,
-  Post, Request, UseGuards
+  Post, UseGuards
 } from "@nestjs/common";
 import {UserService} from "./user.service";
 import {User} from "./user.entity";
 import {LocalAuthGuard} from "../auth/local-auth.guard";
 import {AuthService} from "../auth/auth.service";
-import {SigninDto} from "./dto/signin.dto";
-import {UserCreateDto} from "@shop/shared-ts";
-import {UserExistsDto} from "../../../../../../libs/shared-ts/src/lib/api/user-exists.dto";
+import {AccessTokenDto, SigninDto, UserCreateDto, UserExistsDto} from "@shop/shared-ts";
 
 @Controller('auth')
 export class UserController {
@@ -30,7 +28,7 @@ export class UserController {
 
   @UseGuards(LocalAuthGuard)
   @Post('signin')
-  async signin(@Body() {email}: SigninDto) {
+  async signin(@Body() { email }: SigninDto): Promise<AccessTokenDto> {
     this.logger.log(`${UserController.name} invoked signin with email ${email}`);
     return this.authService.login(email)
   }
