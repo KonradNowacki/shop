@@ -13,7 +13,9 @@ import {CreateProductDto} from "./dto/create-product.dto";
 import {JwtAuthGuard} from "../auth/jwt-auth.guard";
 import {Product} from "./product.entity";
 import {ProductCategory, QueryParam} from "@shop/shared-ts";
+import {ApiTags} from "@nestjs/swagger";
 
+@ApiTags('products')
 @Controller('products')
 export class ProductController {
   private readonly logger = new Logger(ProductController.name)

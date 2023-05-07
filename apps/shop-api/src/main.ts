@@ -15,14 +15,14 @@ async function bootstrap() {
     origin: 'http://localhost:4200', // TODO KN Address for angualr
   })
 
-  // const config = new DocumentBuilder()
-  //   .setTitle('Shop')
-  //   .setDescription('Shop API')
-  //   .setVersion('1.0')
-  //   .addTag('shop')
-  //   .build();
-  // const document = SwaggerModule.createDocument(app, config);
-  // SwaggerModule.setup('api', app, document);
+  const config = new DocumentBuilder()
+    .setTitle('Shop')
+    .setDescription('Shop API')
+    .setVersion('1.0')
+    .addTag('shop')
+    .build();
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('api', app, document);
 
   const port = process.env.PORT || 3000;
   await app.listen(port);

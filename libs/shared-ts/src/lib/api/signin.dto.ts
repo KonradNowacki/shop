@@ -5,10 +5,10 @@ export class SigninDto {
 
   @IsNotEmpty()
   @IsEmail()
-  readonly email: EmailString | undefined;
+  readonly email?: EmailString;
 
   @IsNotEmpty()
   @IsString()
-  readonly password: string | undefined;
+  readonly password?: string;
 
 }

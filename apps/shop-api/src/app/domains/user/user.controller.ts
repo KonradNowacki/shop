@@ -8,8 +8,11 @@ import {UserService} from "./user.service";
 import {User} from "./user.entity";
 import {LocalAuthGuard} from "../auth/local-auth.guard";
 import {AuthService} from "../auth/auth.service";
-import {AccessTokenDto, SigninDto, UserCreateDto, UserExistsDto} from "@shop/shared-ts";
+import {AccessTokenDto, UserCreateDto, UserExistsDto} from "@shop/shared-ts";
+import {ApiTags} from "@nestjs/swagger";
+import {SigninDto} from "../../../../../../libs/shared-ts/src/lib/api/signin.dto";
 
+@ApiTags('auth')
 @Controller('auth')
 export class UserController {
   private readonly logger = new Logger(UserController.name)

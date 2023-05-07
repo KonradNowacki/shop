@@ -1,8 +1,9 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 #config
-/.env.development
+/apps/shop-api/.env.development
 /.env.production
+/.env
 
 # compiled output
 dist
@@ -44,3 +45,4 @@ db.sqlite
 Thumbs.db
 
 .angular
+/.env
