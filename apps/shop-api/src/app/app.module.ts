@@ -1,11 +1,9 @@
 import {Module} from "@nestjs/common";
-import {UserModule} from "./domains/user/user.module";
 import {TypeOrmModule} from "@nestjs/typeorm";
-import {User} from "./domains/user/user.entity";
-import {ProductModule} from "./domains/product/product.module";
-import {Product} from "./domains/product/product.entity";
-import {AuthModule} from "./domains/auth/auth.module";
+import {User} from "../../../../libs/api/src/lib/user/user.entity";
+import {Product} from "../../../../libs/api/src/lib/product/product.entity";
 import {ConfigModule} from "@nestjs/config";
+import {AuthModule, ProductModule, UserModule} from "@shop/api";
 
 @Module({
   imports: [
@@ -30,7 +28,4 @@ import {ConfigModule} from "@nestjs/config";
   ],
 })
 export class AppModule {
-  constructor() {
-    console.log(process.env.DATABASE_USER)
-  }
 }

@@ -10,7 +10,7 @@ import {LocalAuthGuard} from "../auth/local-auth.guard";
 import {AuthService} from "../auth/auth.service";
 import {AccessTokenDto, UserCreateDto, UserExistsDto} from "@shop/shared-ts";
 import {ApiTags} from "@nestjs/swagger";
-import {SigninDto} from "../../../../../../libs/shared-ts/src/lib/api/signin.dto";
+import {SigninDto} from "../../../../shared-ts/src/lib/api/signin.dto";
 
 @ApiTags('auth')
 @Controller('auth')

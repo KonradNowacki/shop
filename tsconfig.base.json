@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@shop/api": ["libs/api/src/index.ts"],
       "@shop/shared-ts": ["libs/shared-ts/src/index.ts"],
       "@shop/shared-ui": ["libs/shared-ui/src/index.ts"],
       "@shop/shop-client-lib": ["libs/shop-client-lib/src/index.ts"]

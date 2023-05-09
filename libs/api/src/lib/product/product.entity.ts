@@ -1,6 +1,6 @@
 import {Column, Entity, JoinColumn, JoinTable, ManyToOne, PrimaryGeneratedColumn} from "typeorm";
 import {User} from "../user/user.entity";
-import {ProductCategory} from "../../../../../../libs/shared-ts/src/lib/product-category.enum";
+import {ProductCategory} from "../../../../shared-ts/src/lib/product-category.enum";
 
 @Entity()
 export class Product {

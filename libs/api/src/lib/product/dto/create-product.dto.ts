@@ -1,5 +1,5 @@
 import {IsNotEmpty, IsNumber, IsString, Min, MinLength} from "class-validator";
-import {ProductCategory} from "../../../../../../../libs/shared-ts/src/lib/product-category.enum";
+import {ProductCategory} from "../../../../../shared-ts/src/lib/product-category.enum";
 
 export class CreateProductDto {
 
