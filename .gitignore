@@ -4,6 +4,7 @@
 /apps/shop-api/.env.development
 /.env.production
 /.env
+.env
 
 # compiled output
 dist
