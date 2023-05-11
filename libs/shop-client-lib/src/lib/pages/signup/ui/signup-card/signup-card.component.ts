@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
-import {AuthCardComponent, ButtonComponent, InputComponent} from "@shop/shared-ui";
-import {TypedFormGroup} from "@shop/shared-ts";
+import {AuthCardComponent, ButtonComponent, InputComponent} from "@shop/common-ui";
+import {TypedFormGroup} from "@shop/common-utils";
 import {FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {errorTailorImports} from "@ngneat/error-tailor";
 import {TranslocoModule} from "@ngneat/transloco";

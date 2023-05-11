@@ -1,11 +1,10 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {AuthCardComponent, ButtonComponent, InputComponent} from "@shop/shared-ui";
 import {TranslocoModule} from "@ngneat/transloco";
-import {TypedFormGroup} from "@shop/shared-ts";
+import {TypedFormGroup} from "@shop/common-utils";
 import {FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {errorTailorImports} from "@ngneat/error-tailor";
 import {SigninModel} from "../../+state/signin.model";
+import {AuthCardComponent, ButtonComponent, InputComponent} from "@shop/common-ui";
 
 @Component({
   selector: 'shop-signin-card',
@@ -48,7 +47,7 @@ import {SigninModel} from "../../+state/signin.model";
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     AuthCardComponent, InputComponent, ButtonComponent,
-    TranslocoModule, ReactiveFormsModule, errorTailorImports
+    TranslocoModule, ReactiveFormsModule, errorTailorImports, AuthCardComponent, InputComponent, ButtonComponent
   ],
 })
 export class SigninCardComponent {

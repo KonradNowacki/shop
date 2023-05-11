@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {EmailString, TypedFormGroup} from "@shop/shared-ts";
+import {EmailString, TypedFormGroup} from "@shop/common-utils";
 import {SigninModel} from "../+state/signin.model";
 
 @Injectable()

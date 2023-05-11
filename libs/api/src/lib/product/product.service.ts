@@ -2,7 +2,7 @@ import {Injectable} from "@nestjs/common";
 import {InjectRepository} from "@nestjs/typeorm";
 import {Between, Repository} from "typeorm";
 import {Product} from "./product.entity";
-import {EmailString, ProductCategory} from "@shop/shared-ts";
+import {EmailString, ProductCategory} from "@shop/common-utils";
 import {UserService} from "../user/user.service";
 import {FindManyOptions} from "typeorm/find-options/FindManyOptions";
 

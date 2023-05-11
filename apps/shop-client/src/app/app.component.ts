@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {RouterModule} from '@angular/router';
-import {NavbarComponent} from "@shop/shared-ui";
+import {NavbarComponent} from "@shop/common-ui";
 
 @Component({
   standalone: true,

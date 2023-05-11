@@ -1,4 +1,4 @@
-import {EmailString} from "@shop/shared-ts";
+import {EmailString} from "@shop/common-utils";
 
 export interface SignupModel {
   email: EmailString;

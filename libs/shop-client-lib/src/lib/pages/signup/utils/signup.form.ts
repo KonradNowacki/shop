@@ -8,7 +8,7 @@ import {
   ValidatorFn,
   Validators
 } from "@angular/forms";
-import {EmailString, ErrorKey, TypedFormGroup} from "@shop/shared-ts";
+import {EmailString, ErrorKey, TypedFormGroup} from "@shop/common-utils";
 import {SignupModel} from "../+state/signup.model";
 import {AuthService} from "../../../api/auth.service";
 import {UntilDestroy, untilDestroyed} from "@ngneat/until-destroy";

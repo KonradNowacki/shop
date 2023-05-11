@@ -1,7 +1,8 @@
 import {inject, Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
-import {AccessTokenDto, EmailString, UserCreateDto} from "@shop/shared-ts";
+import {AccessTokenDto, UserCreateDto} from "@shop/common-api";
 import {Observable} from "rxjs";
+import {EmailString} from "@shop/common-utils";
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {

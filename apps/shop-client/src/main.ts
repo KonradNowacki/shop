@@ -22,7 +22,7 @@ import {
   TranslocoModule,
   TranslocoService,
 } from '@ngneat/transloco';
-import { ErrorKey } from '@shop/shared-ts';
+import { ErrorKey } from '@shop/common-utils';
 import { provideStore, provideState } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import {JwtModule} from "@auth0/angular-jwt";

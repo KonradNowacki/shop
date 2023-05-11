@@ -13,11 +13,11 @@
     "lib": ["es2017", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
-    "baseUrl": ".",
+    "baseUrl": "./",
     "paths": {
-      "@shop/api": ["libs/api/src/index.ts"],
-      "@shop/shared-ts": ["libs/shared-ts/src/index.ts"],
-      "@shop/shared-ui": ["libs/shared-ui/src/index.ts"],
+      "@shop/common-api": ["libs/common/api-contract/src/index.ts"],
+      "@shop/common-utils": ["libs/common/utils/src/index.ts"],
+      "@shop/common-ui": ["libs/common/ui/src/index.ts"],
       "@shop/shop-client-lib": ["libs/shop-client-lib/src/index.ts"]
     }
   },

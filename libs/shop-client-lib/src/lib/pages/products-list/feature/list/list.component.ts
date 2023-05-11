@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {ProductCardComponent} from "@shop/shared-ui"; // FIXME KN Circular deps
+import {ProductCardComponent} from "@shop/common-ui";
 
 @Component({
   selector: 'shop-list',

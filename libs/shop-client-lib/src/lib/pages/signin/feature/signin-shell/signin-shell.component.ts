@@ -1,10 +1,10 @@
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
-import {AuthCardComponent, ButtonComponent, InputComponent} from "@shop/shared-ui";
 import {SigninCardComponent} from "../../ui/signin-card/signin-card.component";
 import {SigninService} from "../../data-access/signin.service";
 import {SigninModel} from "../../+state/signin.model";
 import {SigninFacade} from "../../+state/signin.facade";
 import {SigninForm} from "../../utils/signin.form";
+import {AuthCardComponent, ButtonComponent, InputComponent} from "@shop/common-ui";
 
 @Component({
   selector: 'shop-signin-shell',

@@ -12,7 +12,7 @@ import {ProductService} from "./product.service";
 import {CreateProductDto} from "./dto/create-product.dto";
 import {JwtAuthGuard} from "../auth/jwt-auth.guard";
 import {Product} from "./product.entity";
-import {ProductCategory, QueryParam} from "@shop/shared-ts";
+import {ProductCategory, QueryParam} from "@shop/common-utils";
 import {ApiTags} from "@nestjs/swagger";
 
 @ApiTags('products')

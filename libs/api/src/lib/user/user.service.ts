@@ -3,7 +3,7 @@ import {Injectable, NotAcceptableException} from "@nestjs/common";
 import {InjectRepository} from "@nestjs/typeorm";
 import {User} from "./user.entity";
 import {Repository} from "typeorm";
-import {EmailString} from "@shop/shared-ts";
+import {EmailString} from "@shop/common-utils";
 
 import * as bcrypt from 'bcrypt';
 import { v4 as uuid } from 'uuid';

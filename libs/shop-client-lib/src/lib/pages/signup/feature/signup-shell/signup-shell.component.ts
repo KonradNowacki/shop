@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
-import {AuthCardComponent, ButtonComponent, InputComponent} from "@shop/shared-ui";
+import {AuthCardComponent, ButtonComponent, InputComponent} from "@shop/common-ui";
 import {SignupCardComponent} from "../../ui/signup-card/signup-card.component";
 import {SignupService} from "../../data-access/signup.service";
 

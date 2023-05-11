@@ -1,9 +1,9 @@
 import {Injectable} from "@nestjs/common";
 import {UserService} from "../user/user.service";
-import {EmailString} from "@shop/shared-ts";
 import * as bcrypt from 'bcrypt'
 import {JwtService} from "@nestjs/jwt";
 import {JwtUser} from "./auth.model";
+import {EmailString} from "@shop/common-utils";
 
 @Injectable()
 export class AuthService {
