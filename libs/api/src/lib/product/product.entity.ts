@@ -1,6 +1,6 @@
-import {Column, Entity, JoinColumn, JoinTable, ManyToOne, PrimaryGeneratedColumn} from "typeorm";
+import {Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn} from "typeorm";
 import {User} from "../user/user.entity";
-import {ProductCategory} from "../../../../common/utils/src/lib/product-category.enum";
+import {ProductCategory} from "@shop/common-utils";
 
 @Entity()
 export class Product {
@@ -21,7 +21,7 @@ export class Product {
   })
   category: string;
 
-  @ManyToOne(type => User)
+  @ManyToOne(() => User)
   @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })
   owner: User;
 

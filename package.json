@@ -34,10 +34,12 @@
     "@nrwl/angular": "16.0.0-beta.6",
     "@storybook/angular": "^7.0.6",
     "@types/cookie-parser": "^1.4.3",
+    "@types/multer": "^1.4.7",
     "axios": "^1.0.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
     "cookie-parser": "^1.4.6",
+    "multer": "^1.4.5-lts.1",
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.1",
     "passport-local": "^1.0.0",
@@ -79,6 +81,9 @@
     "@nrwl/web": "16.0.0-beta.6",
     "@nrwl/webpack": "16.0.0-beta.6",
     "@nrwl/workspace": "16.0.0-beta.6",
+    "@nx/jest": "16.0.0-beta.6",
+    "@nx/js": "16.0.0-beta.6",
+    "@nx/nest": "16.0.0-beta.6",
     "@schematics/angular": "~15.2.0",
     "@storybook/addon-essentials": "^7.0.6",
     "@storybook/core-common": "^7.0.6",
@@ -107,4 +112,3 @@
     "typescript": "~4.9.5"
   }
 }
-

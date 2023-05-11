@@ -5,8 +5,8 @@ import {
   Logger,
   Post,
   Query,
-  Req,
-  UseGuards
+  Req, UploadedFile,
+  UseGuards, UseInterceptors
 } from "@nestjs/common";
 import {ProductService} from "./product.service";
 import {CreateProductDto} from "./dto/create-product.dto";
@@ -14,6 +14,7 @@ import {JwtAuthGuard} from "../auth/jwt-auth.guard";
 import {Product} from "./product.entity";
 import {ProductCategory, QueryParam} from "@shop/common-utils";
 import {ApiTags} from "@nestjs/swagger";
+import {FileInterceptor} from "@nestjs/platform-express";
 
 @ApiTags('products')
 @Controller('products')
@@ -24,8 +25,10 @@ export class ProductController {
 
   @Post()
   @UseGuards(JwtAuthGuard)
+  @UseInterceptors(FileInterceptor('image'))
   async createProduct(
     @Body() { name, price, category }: CreateProductDto,
+    @UploadedFile() image,
     @Req() req
   ): Promise<Product> {
     this.logger.log(`${ProductController.name} invoked signup createProduct name ${name}`)
