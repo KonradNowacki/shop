@@ -1,4 +1,4 @@
-import { Logger } from "@nestjs/common";
+import {Logger, ValidationPipe} from "@nestjs/common";
 import { NestFactory } from "@nestjs/core";
 
 import { AppModule } from "./app/app.module";
@@ -10,6 +10,8 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   app.use(cookieParser())
+
+  app.useGlobalPipes(new ValidationPipe())
 
   app.enableCors({
     origin: 'http://localhost:4200', // TODO KN Address for angualr

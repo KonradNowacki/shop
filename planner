@@ -1,6 +1,6 @@
 [DONE] Connect DB
 [DONE] Signup a new user
-[DONE] signin a new user
+[DONE] Signin a new user
 [DONE] Encrypt password signup
 [DONE] add EmailString with an nx library
 
@@ -23,6 +23,9 @@
 
 
 [DONE] MOVE SECRETS & PASSWORDS OUTSIDE THE CODE
+
+[] Add gallery upload endpoint
+[] Make sure common lib doesnt have down dependencies
 
 
 // Stories

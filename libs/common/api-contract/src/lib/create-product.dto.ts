@@ -1,12 +1,15 @@
-import {IsNotEmpty, IsNumber, IsString, Min, MinLength} from "class-validator";
-import {ProductCategory} from "../../../../../common/utils/src/lib/product-category.enum";
+import {IsEnum, IsNotEmpty, IsNumber, IsString, Min, MinLength} from "class-validator";
+import {ProductCategory} from "@shop/common-utils";
+
 
 export class CreateProductDto {
 
+  @IsNotEmpty()
   @IsString()
   @MinLength(1)
   readonly name: string;
 
+  @IsNotEmpty()
   @IsNumber({
     maxDecimalPlaces: 2
   })
@@ -14,5 +17,6 @@ export class CreateProductDto {
   readonly price: number;
 
   @IsNotEmpty()
+  @IsEnum(ProductCategory)
   readonly category: ProductCategory
 }
