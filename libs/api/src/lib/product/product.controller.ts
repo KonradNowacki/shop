@@ -15,8 +15,6 @@ import {ProductCategory, QueryParam} from "@shop/common-utils";
 import { ApiTags} from "@nestjs/swagger";
 import {CreateProductDto} from "@shop/common-api";
 
-
-
 @ApiTags('products')
 @Controller('products')
 export class ProductController {
@@ -42,7 +40,7 @@ export class ProductController {
     @Query(QueryParam.LIMIT) limit?: number,
   ): Promise<Product[]> {
     this.logger.log(`${ProductController.name} invoked getPublicProducts`);
-    return await this.productService.getPublicProducts(null, category, minPrice, maxPrice, limit);
+    return await this.productService.getProducts(undefined, category, minPrice, maxPrice, limit);
   }
 
   @Get('my')
@@ -55,7 +53,7 @@ export class ProductController {
     @Query(QueryParam.LIMIT) limit?: number,
   ): Promise<Product[]> {
     this.logger.log(`${ProductController.name} invoked getLoggedUsersProducts`);
-    return await this.productService.getPublicProducts(req.user.email, category, minPrice, maxPrice, limit);
+    return await this.productService.getProducts(req.user.email, category, minPrice, maxPrice, limit);
   }
 
 }

@@ -59,7 +59,7 @@ describe('ProductService', () => {
       jest.spyOn(productRepo, 'find').mockReturnValueOnce(Promise.resolve(expectedReturnValue))
 
       // WHEN
-      const result = await productService.getPublicProducts();
+      const result = await productService.getProducts();
 
       // THEN
       expect(result).toEqual(expectedReturnValue);

@@ -4,6 +4,8 @@ import {Between, Repository} from "typeorm";
 import {Product} from "./product.entity";
 import {EmailString, ProductCategory} from "@shop/common-utils";
 import {UserService} from "../user/user.service";
+import {User} from "../user/user.entity";
+import {FindOptionsWhere} from "typeorm/find-options/FindOptionsWhere";
 
 @Injectable()
 export class ProductService {
@@ -20,13 +22,17 @@ export class ProductService {
     return await this.productRepository.save(product, { transaction: true });
   }
 
-  async getPublicProducts(
-    ownerEmail: EmailString,
-    category: ProductCategory,
+  async getProducts(
+    ownerEmail?: EmailString,
+    category?: ProductCategory,
     minPrice = 0, maxPrice = 999999,
-    limit: number
+    limit = 10
     ): Promise<Product[]> {
-    const owner = await this.userService.findUserByEmail(ownerEmail);
+    let owner: User | undefined = undefined;
+
+    if (ownerEmail) {
+      owner = await this.userService.findUserByEmail(ownerEmail);
+    }
 
     return await this.productRepository.find({
       where: {

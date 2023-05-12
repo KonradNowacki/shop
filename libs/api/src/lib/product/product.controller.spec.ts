@@ -52,7 +52,7 @@ describe('ProductController', () => {
       const product3: Product = { id: 444, price: 555, name: 'Product 3', owner };
       const products = [product1, product2, product3];
 
-      jest.spyOn(productService, 'getPublicProducts').mockReturnValueOnce(Promise.resolve(products));
+      jest.spyOn(productService, 'getProducts').mockReturnValueOnce(Promise.resolve(products));
 
       // WHEN
       const result = await productController.getPublicProducts();
