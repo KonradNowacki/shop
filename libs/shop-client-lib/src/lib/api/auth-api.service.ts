@@ -5,7 +5,7 @@ import {Observable} from "rxjs";
 import {EmailString} from "@shop/common-utils";
 
 @Injectable({ providedIn: 'root' })
-export class AuthService {
+export class AuthApiService {
 
   private readonly httpClient = inject(HttpClient);
 

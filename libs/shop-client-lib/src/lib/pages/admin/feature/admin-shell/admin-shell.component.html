@@ -1,0 +1,13 @@
+<!--      TODO KN Move to new component, generic to common-ui-->
+
+<div class="wrapper">
+  <aside>
+    <a [routerLink]="'products'">{{ 'text.my-products' | transloco }}</a>
+    <a [routerLink]="'products/add'">{{ 'text.add-product' | transloco }}</a>
+  </aside>
+
+
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+</div>

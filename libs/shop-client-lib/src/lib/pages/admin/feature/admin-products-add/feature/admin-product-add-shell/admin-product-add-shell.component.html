@@ -1,0 +1,22 @@
+<div class="wrapper">
+
+  <form [formGroup]="form">
+
+    <shop-input
+      [label]="'label.product-name' | transloco"
+      [control]="form.controls.name"
+      type="text"
+    ></shop-input>
+
+    <shop-input
+      [label]="'label.price' | transloco"
+      [control]="form.controls.price"
+      type="number"
+    ></shop-input>
+
+    <button shop-button>{{ 'button.save-product' | transloco }}</button>
+
+  </form>
+
+</div>
+

@@ -1,6 +1,6 @@
 import {inject, Injectable} from "@angular/core";
 import {Actions, createEffect, ofType} from "@ngrx/effects";
-import {AuthService} from "../../../api/auth.service";
+import {AuthApiService} from "../../../api/auth-api.service";
 import {SigninActions} from "./signin.actions";
 import {catchError, EMPTY, exhaustMap, tap} from "rxjs";
 import {Router} from "@angular/router";
@@ -9,7 +9,7 @@ import {Router} from "@angular/router";
 export class SigninEffects {
 
   private readonly $actions = inject(Actions);
-  private readonly authService = inject(AuthService);
+  private readonly authService = inject(AuthApiService);
   private readonly router = inject(Router);
 
   signin$ = createEffect(() => {

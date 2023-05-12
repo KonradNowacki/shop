@@ -10,6 +10,10 @@ export class AuthService {
     return this.jwtHelper.decodeToken()?.user?.email;
   }
 
+  getLoggedInUserId(): number {
+    return this.jwtHelper.decodeToken()?.user?.id;
+  }
+
   isLoggedIn(): boolean {
     return !<boolean>this.jwtHelper.isTokenExpired();
   }

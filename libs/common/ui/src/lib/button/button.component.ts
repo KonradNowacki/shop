@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 import {Colors, ColorTypeClass, Variants} from "./button.model";
 
 @Component({
-  selector: 'button[shop-button]',
+  selector: '[shop-button]',
   standalone: true,
   imports: [CommonModule],
   template: `

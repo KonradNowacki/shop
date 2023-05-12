@@ -2,13 +2,13 @@ import {inject, Injectable} from "@angular/core";
 import {Actions, createEffect, ofType} from "@ngrx/effects";
 import {SignupActions} from "./signup.actions";
 import {exhaustMap} from "rxjs";
-import {AuthService} from "../../../api/auth.service";
+import {AuthApiService} from "../../../api/auth-api.service";
 
 @Injectable()
 export class SignupEffects {
 
   private readonly $actions = inject(Actions);
-  private readonly authService = inject(AuthService);
+  private readonly authService = inject(AuthApiService);
 
   createUser$ = createEffect(() => {
     return this.$actions.pipe(

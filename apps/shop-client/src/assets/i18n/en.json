@@ -14,5 +14,5 @@
   "error.special-char-required": "At least one special character is required",
   "error.email-not-unique": "User with such e-mail already exists",
 
-  "text.logged-as": "Logges as {{ email }}"
+  "text.logged-as": "Logged as {{ email }}"
 }

@@ -10,15 +10,15 @@ import {
 } from "@angular/forms";
 import {EmailString, ErrorKey, TypedFormGroup} from "@shop/common-utils";
 import {SignupModel} from "../+state/signup.model";
-import {AuthService} from "../../../api/auth.service";
+import {AuthApiService} from "../../../api/auth-api.service";
 import {UntilDestroy, untilDestroyed} from "@ngneat/until-destroy";
-import {catchError, debounceTime, distinctUntilChanged, EMPTY, map, switchMap, take, tap} from "rxjs";
+import {catchError, debounceTime, distinctUntilChanged, EMPTY, map, switchMap, take} from "rxjs";
 
 @UntilDestroy()
 @Injectable()
 export class SignupForm {
 
-  private readonly authService = inject(AuthService);
+  private readonly authService = inject(AuthApiService);
 
   buildForm(): FormGroup<TypedFormGroup<SignupModel>> {
     return new FormGroup({
