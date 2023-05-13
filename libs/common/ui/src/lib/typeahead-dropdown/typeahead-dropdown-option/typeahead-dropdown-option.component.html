@@ -1,0 +1,14 @@
+<div
+  class="option"
+  (click)="select()"
+  (keydown.enter)="select()"
+  *ngIf="isDisplayed"
+>
+
+  <ng-content select="[icon-before]"></ng-content>
+
+  <div class="label" [innerHtml]="label | boldTextFragment:(searchText)"></div>
+
+  <ng-content select="[icon-after]"></ng-content>
+
+</div>

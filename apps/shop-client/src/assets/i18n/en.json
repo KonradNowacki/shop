@@ -14,5 +14,15 @@
   "error.special-char-required": "At least one special character is required",
   "error.email-not-unique": "User with such e-mail already exists",
 
-  "text.logged-as": "Logged as {{ email }}"
+  "text.logged-as": "Logged as {{ email }}",
+
+  "product-category.ELECTRONICS": "Electronics",
+  "product-category.FASHION": "Fashion",
+  "product-category.HOUSE_GARDEN":"House & Garden",
+  "product-category.BABY": "Baby",
+  "product-category.BEAUTY":"Beauty",
+  "product-category.HEALTH": "Health",
+  "product-category.ENTERTAINMENT":"Entertainment",
+  "product-category.SPORT": "Sport",
+  "product-category.SERVICES":"Services"
 }

@@ -1,0 +1,23 @@
+.options-panel {
+  all: unset;
+
+  height: 30px;
+  width: 250px;
+  background-color: #dc3545;
+}
+
+.option {
+  height: 30px;
+  width: 250px;
+  background-color: #85d286;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+
+  &:hover {
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+}

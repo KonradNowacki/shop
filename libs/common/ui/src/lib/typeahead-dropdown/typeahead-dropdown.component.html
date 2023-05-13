@@ -1,0 +1,8 @@
+<input
+  type="text"
+  [formControl]="control"
+  (focusin)="isOptionsDisplayed = true"
+>
+<ng-container *ngIf="isOptionsDisplayed">
+  <ng-content></ng-content>
+</ng-container>

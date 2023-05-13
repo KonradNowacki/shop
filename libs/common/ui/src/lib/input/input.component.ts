@@ -21,7 +21,6 @@ import {ControlErrorAnchorDirective, ControlErrorsDirective} from "@ngneat/error
       >
       <div class="input__hint" *ngIf="hint">{{ hint }}</div>
       <ng-template controlErrorAnchor #anchor="controlErrorAnchor"></ng-template>
-
     </div>
   `,
   styleUrls: ['./input.component.scss'],
