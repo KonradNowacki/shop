@@ -1,8 +1,13 @@
-<input
-  type="text"
-  [formControl]="control"
-  (focusin)="isOptionsDisplayed = true"
->
-<ng-container *ngIf="isOptionsDisplayed">
+<div class="input">
+  <label class="input__label ">{{ label }}<span *ngIf="isRequired">*</span></label>
+  <input
+    type="text"
+    class="input__field"
+    [formControl]="control"
+    (focusin)="onInputFocused()"
+  >
+</div>
+
+<div class="options-panel" *ngIf="isOptionsDisplayed">
   <ng-content></ng-content>
-</ng-container>
+</div>

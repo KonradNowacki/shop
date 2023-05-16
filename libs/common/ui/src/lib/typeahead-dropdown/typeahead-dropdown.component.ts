@@ -1,17 +1,17 @@
 import {
   AfterContentInit,
-  ChangeDetectionStrategy, ChangeDetectorRef,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ContentChildren,
   inject,
-  OnInit,
-  QueryList
+  Input,
+  QueryList,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule} from '@angular/common';
 import {InputComponent} from "../input/input.component";
 import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, ReactiveFormsModule} from "@angular/forms";
 import {TypeaheadDropdownOptionComponent} from "./typeahead-dropdown-option/typeahead-dropdown-option.component";
-import {Observable, of} from "rxjs";
 
 @Component({
   selector: 'shop-typeahead-dropdown',
@@ -28,32 +28,23 @@ import {Observable, of} from "rxjs";
     }
   ]
 })
-export class TypeaheadDropdownComponent implements ControlValueAccessor, OnInit, AfterContentInit {
+export class TypeaheadDropdownComponent implements ControlValueAccessor, AfterContentInit {
+
+  @Input() label: string;
+  @Input() isRequired = false;
 
   @ContentChildren(TypeaheadDropdownOptionComponent)
   private readonly options: QueryList<TypeaheadDropdownOptionComponent> | undefined;
-
-  protected readonly control = new FormControl<string>('');
   protected isOptionsDisplayed = false;
+  protected readonly control = new FormControl<string>('');
 
   private readonly cd = inject(ChangeDetectorRef)
 
   private onChange = (value: any) => {}
   private onTouch = () => {}
 
-
-  ngOnInit() {
-    // this.control.valueChanges.subscribe(val => {
-    //   this.isOptionsDisplayed = true;
-    //   console.log(val)
-    //   this.options?.map(o => ({ ...o, isDisplayed: o.label.includes(val || '') }))
-    // })
-  }
-
   ngAfterContentInit() {
     this.control.valueChanges.subscribe(val => {
-      this.isOptionsDisplayed = true;
-      console.log(val)
 
       this.options?.map(o => {
         o.isDisplayed = o.label.toLowerCase().includes(val?.toLowerCase() || '')
@@ -81,6 +72,10 @@ export class TypeaheadDropdownComponent implements ControlValueAccessor, OnInit,
     this.isOptionsDisplayed = false;
     this.onChange(value)
     this.cd.detectChanges();
+  }
+
+  onInputFocused(): void {
+    this.isOptionsDisplayed = true
   }
 
 }

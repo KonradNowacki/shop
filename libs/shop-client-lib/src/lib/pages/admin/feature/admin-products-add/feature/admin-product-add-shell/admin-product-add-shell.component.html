@@ -1,6 +1,6 @@
 <div class="wrapper">
 
-  <form [formGroup]="form">
+  <form [formGroup]="form" (ngSubmit)="submit()">
 
     <shop-input
       [label]="'label.product-name' | transloco"
@@ -14,7 +14,11 @@
       type="number"
     ></shop-input>
 
-    <shop-typeahead-dropdown>
+    <shop-typeahead-dropdown
+      [label]="'label.product-category' | transloco"
+      [isRequired]="isProductCategoryRequired"
+      [formControl]="form.controls.category"
+    >
       <ng-container *ngFor="let category of productCategories; let index = index">
         <shop-typeahead-dropdown-option
           [tabIndex]="index"

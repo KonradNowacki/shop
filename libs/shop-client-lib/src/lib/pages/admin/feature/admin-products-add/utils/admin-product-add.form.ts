@@ -1,12 +1,12 @@
 import {Injectable} from "@angular/core";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ProductCategory, TypedFormGroup} from "@shop/common-utils";
-import {CreateProductDto} from "@shop/common-api";
+import {AdminProductModel} from "../../../+store/admin-product.model";
 
 @Injectable()
 export class AdminProductAddForm {
 
-  buildForm(): FormGroup<TypedFormGroup<CreateProductDto>> {
+  buildForm(): FormGroup<TypedFormGroup<AdminProductModel>> {
     return new FormGroup({
         name: new FormControl<string>('', {
           validators: [Validators.required],

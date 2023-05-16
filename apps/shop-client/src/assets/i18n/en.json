@@ -5,6 +5,7 @@
   "label.email": "Email",
   "label.password": "Password",
   "label.repeat-password": "Repeat password",
+  "label.product-category": "Product category",
 
   "error.required": "This field is required",
   "error.email": "Incorrect email format",

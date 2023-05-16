@@ -1,23 +1,9 @@
+@import "libs/common/ui/src/scss/input";
+
+@include input();
+
 .options-panel {
-  all: unset;
-
-  height: 30px;
-  width: 250px;
-  background-color: #dc3545;
+  border-radius: var(--border-radius-large);
+  box-shadow: 0 2px 7px var(--color-secondary);
 }
 
-.option {
-  height: 30px;
-  width: 250px;
-  background-color: #85d286;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-
-  &:hover {
-    font-weight: bold;
-    cursor: pointer;
-  }
-
-}

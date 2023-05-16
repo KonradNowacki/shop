@@ -1,6 +1,11 @@
 .option {
-  height: 30px;
+  height: 50px;
   display: flex;
   align-items: center;
-  background-color: pink;
+  padding-left: 1rem;
+
+  &:hover {
+    cursor: pointer;
+    background-color: var(--color-primary-20);
+  }
 }
