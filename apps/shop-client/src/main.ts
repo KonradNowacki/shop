@@ -12,7 +12,7 @@ import {
   Injectable,
   isDevMode,
 } from '@angular/core';
-import { HttpClient, provideHttpClient } from '@angular/common/http';
+import {HttpClient, provideHttpClient, withInterceptors, withInterceptorsFromDi} from '@angular/common/http';
 import {
   Translation,
   TRANSLOCO_CONFIG,
@@ -22,7 +22,7 @@ import {
   TranslocoModule,
   TranslocoService,
 } from '@ngneat/transloco';
-import { ErrorKey } from '@shop/common-utils';
+import {accessTokenInterceptor, ErrorKey} from '@shop/common-utils';
 import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import {JwtModule} from "@auth0/angular-jwt";
@@ -44,8 +44,15 @@ bootstrapApplication(AppComponent, {
     provideStore(),
 
 
+
+
     provideRouter(appRoutes, withEnabledBlockingInitialNavigation()),
-    provideHttpClient(),
+
+    provideHttpClient(
+      withInterceptors([
+        accessTokenInterceptor
+      ])
+    ),
 
     importProvidersFrom(
       TranslocoModule,

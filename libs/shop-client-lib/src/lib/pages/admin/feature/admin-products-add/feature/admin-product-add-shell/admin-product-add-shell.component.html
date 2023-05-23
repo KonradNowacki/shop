@@ -5,13 +5,12 @@
     <shop-input
       [label]="'label.product-name' | transloco"
       [control]="form.controls.name"
-      type="text"
     ></shop-input>
 
     <shop-input
       [label]="'label.price' | transloco"
       [control]="form.controls.price"
-      type="number"
+      [type]="'number'"
     ></shop-input>
 
     <shop-typeahead-dropdown

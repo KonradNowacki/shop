@@ -32,11 +32,14 @@ export class AdminProductAddShellComponent {
   }
 
   submit(): void {
-    console.log(this.form.valid)
-    console.log(this.form.value)
-
     if (this.form.valid) {
-      const product = this.form.value as AdminProductModel;
+      const product = {
+        ...this.form.value,
+        price: +(this.form?.controls?.price?.value || 0)
+      } as AdminProductModel;
+
+
+      console.log(product)
       this.adminProductsService.addProduct(product);
     }
   }

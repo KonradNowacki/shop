@@ -14,7 +14,7 @@ export class ProductsApiService {
   createProduct(product: CreateProductDto): Observable<AdminProductDto> {
     return this.httpClient.post<AdminProductDto>('http://localhost:3000/products', {
       ...product
-    });
+    }, {  });
   }
 
 }

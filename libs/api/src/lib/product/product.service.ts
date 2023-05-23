@@ -19,6 +19,7 @@ export class ProductService {
   async createProduct(name: string, price: number, category: ProductCategory, email: EmailString) {
     const owner = await this.userService.findUserByEmail(email);
     const product = this.productRepository.create({ name, price, owner, category });
+    console.log(name, email)
     return await this.productRepository.save(product, { transaction: true });
   }
 
