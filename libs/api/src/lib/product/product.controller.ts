@@ -2,7 +2,7 @@ import {
   Body,
   Controller,
   Get,
-  Logger,
+  Logger, NotFoundException, Param,
   Post,
   Query,
   UseGuards,
@@ -12,8 +12,9 @@ import {JwtAuthGuard} from "../auth/jwt-auth.guard";
 import {Product} from "./product.entity";
 import {EmailString, ProductCategory, QueryParam} from "@shop/common-utils";
 import { ApiTags} from "@nestjs/swagger";
-import {CreateProductDto} from "@shop/common-api";
+import {AdminProductDetailsDto, AdminProductDto, CreateProductDto} from "@shop/common-api";
 import {User} from "../auth/user.decorator";
+import {ProductMapper} from "./product.mapper";
 
 @ApiTags('products')
 @Controller('products')
@@ -51,9 +52,27 @@ export class ProductController {
     @Query(QueryParam.MIN_PRICE) minPrice?: number,
     @Query(QueryParam.MAX_PRICE) maxPrice?: number,
     @Query(QueryParam.LIMIT) limit?: number,
-  ): Promise<Product[]> {
+  ): Promise<AdminProductDto[]> {
     this.logger.log(`${ProductController.name} invoked getLoggedUsersProducts`);
-    return await this.productService.getProducts(email, category, minPrice, maxPrice, limit);
+    const products = await this.productService.getProducts(email, category, minPrice, maxPrice, limit);
+    return products.map(ProductMapper.entityToAdminProductDto);
+  }
+
+  @Get('my/:productId')
+  @UseGuards(JwtAuthGuard)
+  // TODO KN Use guard that checks if required product ihas owner the logged in user
+  async getLoggedUsersProductDetails(
+    @User('email') email: EmailString,
+    @Param('productId') productId: number,
+  ): Promise<AdminProductDetailsDto> {
+    this.logger.log(`${ProductController.name} invoked getLoggedUsersProductDetails with productId ${productId}`);
+    const product = await this.productService.getLoggedUsersProductDetails(productId);
+
+    if (!product) {
+      throw new NotFoundException()
+    }
+
+    return ProductMapper.entityToAdminProductDetailsDto(product);
   }
 
 }

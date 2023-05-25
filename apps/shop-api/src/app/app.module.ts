@@ -8,12 +8,12 @@ import {AuthModule, ProductModule, ShopTypeormModule, UserModule} from "@shop/ap
     ConfigModule.forRoot({
       isGlobal: true
     }),
+    ShopTypeormModule,
 
     UserModule,
     ProductModule,
     AuthModule,
 
-    ShopTypeormModule
   ],
 })
 export class AppModule {

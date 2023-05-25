@@ -1,7 +1,7 @@
 import {inject, Injectable} from "@angular/core";
 import {ProductsApiService} from "../../../api/products-api.service";
 import {Observable} from "rxjs";
-import {AdminProductDto} from "@shop/common-api";
+import {AdminProductDetailsDto, AdminProductDto} from "@shop/common-api";
 import {AdminProductModel} from "../+store/admin-product.model";
 import {AdminProductsFacade} from "../+store/admin-products.facade";
 
@@ -17,6 +17,14 @@ export class AdminProductsService {
 
   addProduct(product: AdminProductModel): void {
     this.adminProductsFacade.createProduct(product);
+  }
+
+  getAdminProducts(): Observable<AdminProductModel[]> {
+    return this.productsApiService.getLoggedInUsersProducts();
+  }
+
+  getAdminProductDetails(productId: number): Observable<AdminProductDetailsDto> {
+    return this.productsApiService.getLoggedInUsersProductDetails(productId);
   }
 
 }

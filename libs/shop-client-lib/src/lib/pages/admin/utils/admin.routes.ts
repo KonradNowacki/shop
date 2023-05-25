@@ -10,6 +10,8 @@ import {
 import {AdminProductsFacade} from "../+store/admin-products.facade";
 import {provideEffects} from "@ngrx/effects";
 import {AdminProductsEffects} from "../+store/admin-products.effects";
+import {AdminProductsService} from "../data-access/admin-products.service";
+import {AdminProductDetailsComponent} from "../feature/admin-product-details/admin-product-details.component";
 
 export const adminRoutes: Route[] = [
   {
@@ -17,7 +19,11 @@ export const adminRoutes: Route[] = [
     component: AdminShellComponent, // TODO KN LoadComponent/Children
     canMatch: [() => inject(AuthService).isLoggedIn()],
     canActivateChild: [() => inject(AuthService).isLoggedIn()],
-    providers: [ AdminProductsFacade, provideEffects(AdminProductsEffects)],
+    providers: [
+      AdminProductsFacade,
+      AdminProductsService,
+      provideEffects(AdminProductsEffects)
+    ],
     children: [
       {
         path: 'products',
@@ -26,6 +32,10 @@ export const adminRoutes: Route[] = [
       {
         path: 'products/add',
         component: AdminProductAddShellComponent
+      },
+      {
+        path: 'products/:productId',
+        component: AdminProductDetailsComponent
       },
 
     ]

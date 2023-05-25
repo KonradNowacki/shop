@@ -1,9 +1,20 @@
 <div class="wrapper">
-  <table>
-    <th></th>
-  </table>
 
-<!--  <ng-container *ngFor="let product of products">-->
+    <table>
+      <tr>
+        <th>{{ 'table-header.num' | transloco | titlecase }}</th>
+        <th>{{ 'table-header.name' | transloco | titlecase }}</th>
+        <th>{{ 'table-header.price' | transloco | titlecase }}</th>
+        <th>{{ 'table-header.category' | transloco | titlecase }}</th>
+      </tr>
 
-<!--  </ng-container>-->
+      <tr *ngFor="let product of products$ | async; let index = index">
+        <td>{{ index + 1 }}</td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.price | currency }}</td>
+        <td>{{ ('product-category.' + product.category) | transloco }}</td>
+      </tr>
+
+    </table>
+
 </div>

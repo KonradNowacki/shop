@@ -1,4 +1,4 @@
-import {Injectable} from "@nestjs/common";
+import {Injectable, UnauthorizedException} from "@nestjs/common";
 import {InjectRepository} from "@nestjs/typeorm";
 import {Between, Repository} from "typeorm";
 import {Product} from "./product.entity";
@@ -52,5 +52,9 @@ export class ProductService {
   //     where: { owner }
   //   })
   // }
+
+  async getLoggedUsersProductDetails(id: number): Promise<Product | null> {
+    return await this.productRepository.findOneBy({ id });
+  }
 
 }

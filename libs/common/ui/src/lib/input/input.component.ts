@@ -1,10 +1,9 @@
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
-  Component, ElementRef, Input, OnInit, ViewChild,
+  Component, Input, OnInit,
 } from '@angular/core';
 import {FormControl, ReactiveFormsModule, Validators} from "@angular/forms";
-import {JsonPipe, NgClass, NgIf, NgTemplateOutlet} from "@angular/common";
+import {JsonPipe, NgClass, NgIf} from "@angular/common";
 import {ControlErrorAnchorDirective, ControlErrorsDirective} from "@ngneat/error-tailor";
 
 @Component({

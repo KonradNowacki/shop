@@ -1,7 +1,7 @@
 import {inject, Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {AdminProductDto, CreateProductDto} from "@shop/common-api";
+import {AdminProductDetailsDto, AdminProductDto, CreateProductDto} from "@shop/common-api";
 
 @Injectable({ providedIn: 'root' })
 export class ProductsApiService {
@@ -15,6 +15,10 @@ export class ProductsApiService {
     return this.httpClient.post<AdminProductDto>('http://localhost:3000/products', {
       ...product
     }, {  });
+  }
+
+  getLoggedInUsersProductDetails(productId: number): Observable<AdminProductDetailsDto> {
+    return this.httpClient.get<AdminProductDetailsDto>(`http://localhost:3000/products/my/${productId}`);
   }
 
 }
