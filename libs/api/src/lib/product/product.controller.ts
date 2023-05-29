@@ -1,20 +1,14 @@
-import {
-  Body,
-  Controller,
-  Get,
-  Logger, NotFoundException, Param,
-  Post,
-  Query,
-  UseGuards,
-} from "@nestjs/common";
+import {Body, Controller, Get, Logger, NotFoundException, Param, Post, Query, UseGuards,} from "@nestjs/common";
 import {ProductService} from "./product.service";
 import {JwtAuthGuard} from "../auth/jwt-auth.guard";
 import {Product} from "./product.entity";
-import {EmailString, ProductCategory, QueryParam} from "@shop/common-utils";
-import { ApiTags} from "@nestjs/swagger";
+import {EmailString, ProductCategory, QueryParam, RolesEnum} from "@shop/common-utils";
+import {ApiTags} from "@nestjs/swagger";
 import {AdminProductDetailsDto, AdminProductDto, CreateProductDto} from "@shop/common-api";
 import {User} from "../auth/user.decorator";
 import {ProductMapper} from "./product.mapper";
+import {Roles} from "../auth/guards/roles.decorator";
+import {RolesGuard} from "../auth/guards/roles.guard";
 
 @ApiTags('products')
 @Controller('products')
@@ -45,7 +39,8 @@ export class ProductController {
   }
 
   @Get('my')
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(RolesEnum.ADMIN)
   async getLoggedUsersProducts(
     @User('email') email: EmailString,
     @Query(QueryParam.CATEGORY) category?: ProductCategory,

@@ -4,11 +4,13 @@ import {
   AfterUpdate,
   Column,
   Entity,
-  JoinColumn,
+  JoinColumn, JoinTable, ManyToMany,
   OneToMany,
   PrimaryGeneratedColumn
 } from "typeorm";
 import {Product} from "../product/product.entity";
+import {RolesEnum} from "@shop/common-utils";
+import {Role} from "./role.entity";
 
 @Entity()
 export class User {
@@ -34,6 +36,17 @@ export class User {
   )
   @JoinColumn()
   products: Product[];
+
+  @ManyToMany(
+    () => Role,
+    { nullable: true, cascade: true }
+  )
+  @JoinTable({
+    name: 'users_roles',
+    joinColumn: { name: 'user_id', referencedColumnName: 'id'},
+    inverseJoinColumn: { name: 'role_id', referencedColumnName: 'id'},
+  })
+  roles: Role[];
 
 
 

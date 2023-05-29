@@ -1,6 +1,7 @@
-import {Module} from "@nestjs/common";
+import {Module, OnApplicationBootstrap} from "@nestjs/common";
 import {ConfigModule} from "@nestjs/config";
 import {AuthModule, ProductModule, ShopTypeormModule, UserModule} from "@shop/api";
+
 
 
 @Module({
@@ -8,13 +9,13 @@ import {AuthModule, ProductModule, ShopTypeormModule, UserModule} from "@shop/ap
     ConfigModule.forRoot({
       isGlobal: true
     }),
+
     ShopTypeormModule,
 
     UserModule,
     ProductModule,
-    AuthModule,
-
-  ],
+    AuthModule
+  ]
 })
 export class AppModule {
 }

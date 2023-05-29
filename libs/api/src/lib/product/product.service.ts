@@ -39,7 +39,7 @@ export class ProductService {
       where: {
         category,
         price: Between(minPrice, maxPrice),
-        owner
+        // owner
       },
       take: limit
     });

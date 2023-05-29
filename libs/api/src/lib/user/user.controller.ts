@@ -8,9 +8,9 @@ import {UserService} from "./user.service";
 import {User} from "./user.entity";
 import {LocalAuthGuard} from "../auth/local-auth.guard";
 import {AuthService} from "../auth/auth.service";
-import {AccessTokenDto, UserCreateDto, UserExistsDto} from "@shop/common-api";
+import {AccessTokenDto, SigninDto, UserCreateDto, UserExistsDto} from "@shop/common-api";
 import {ApiTags} from "@nestjs/swagger";
-import {SigninDto} from "../../../../common/api-contract/src/lib/signin.dto";
+
 
 @ApiTags('auth')
 @Controller('auth')
