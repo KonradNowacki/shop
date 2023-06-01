@@ -4,6 +4,7 @@ import { NestFactory } from "@nestjs/core";
 import { AppModule } from "./app/app.module";
 import cookieParser from "cookie-parser";
 import {DocumentBuilder, SwaggerModule} from "@nestjs/swagger";
+import {RolesGuard} from "../../../libs/api/src/lib/auth/guards/roles.guard";
 
 
 async function bootstrap() {

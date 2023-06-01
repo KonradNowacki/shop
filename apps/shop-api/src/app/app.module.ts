@@ -1,4 +1,4 @@
-import {Module, OnApplicationBootstrap} from "@nestjs/common";
+import {Module} from "@nestjs/common";
 import {ConfigModule} from "@nestjs/config";
 import {AuthModule, ProductModule, ShopTypeormModule, UserModule} from "@shop/api";
 
@@ -15,7 +15,7 @@ import {AuthModule, ProductModule, ShopTypeormModule, UserModule} from "@shop/ap
     UserModule,
     ProductModule,
     AuthModule
-  ]
+  ],
 })
 export class AppModule {
 }

@@ -15,6 +15,8 @@ export class Role {
   })
   role: string;
 
-  @ManyToMany(() => User)
+  @ManyToMany(() => User, user => user.roles,
+    {onDelete: 'NO ACTION', onUpdate: 'NO ACTION'}
+    )
   user: User;
 }

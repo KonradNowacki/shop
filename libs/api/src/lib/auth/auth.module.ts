@@ -22,12 +22,7 @@ import {RolesGuard} from "./guards/roles.guard";
   providers: [
     AuthService,
     LocalStrategy,
-    JwtStrategy,
-    {
-      provide: APP_GUARD,
-      useValue: RolesGuard
-    }
-
+    JwtStrategy
   ],
   exports: [AuthService]
 })

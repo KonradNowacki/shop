@@ -19,7 +19,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       // TODO KN Handle error
     }
 
-    const { id, email } = user;
-    return { id, email }
+    const { id, email, roles } = user;
+    return { id, email, roles }
   }
 }

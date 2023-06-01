@@ -10,21 +10,19 @@ export class RolesGuard implements CanActivate {
   canActivate(context: ExecutionContext): boolean {
     const roles = this.reflector.get<RolesEnum[]>('roles', context.getHandler());
 
-    console.log('from roles guard ', roles)
 
     if (!roles) {
       return true;
     }
+
     const request = context.switchToHttp().getRequest();
-    const userRoles = request.user.roles;
+    const userRoles = request.user?.roles?.map(({ role }) => role);
 
-    console.log('userRoles: ', userRoles)
+    if (!userRoles) {
+      // TODO KN Handle error
+    }
 
-
-
-    return true;
-
-    // return this.matchRoles(userRoles, roles);
+    return this.matchRoles(userRoles, roles);
   }
 
   private matchRoles(userRoles: RolesEnum[], requiredRoles: RolesEnum[]): boolean {

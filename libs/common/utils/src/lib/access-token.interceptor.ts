@@ -13,14 +13,3 @@ export const accessTokenInterceptor: HttpInterceptorFn = (req, next) => {
 
   return next(newReq);
 };
-
-// TODO KN Interesting case of using interceptor
-// export function AuthorizationInterceptor(req: HttpRequest<unknown>,
-//                                          next: HttpHandlerFn){
-//   const loadingService = inject(LoadingService);
-//   loadingService.startLoader();
-//   const clonedRequest = request.clone({ setHeaders: {
-//       Authorization: 'this_is_angular' } });
-//   return next(clonedRequest)
-//     .pipe(finalize(() => this.loadingService.stopLoader()))
-// }

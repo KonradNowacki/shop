@@ -18,7 +18,8 @@ export class ProductController {
   }
 
   @Post()
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(RolesEnum.USER)
   async createProduct(
     @Body() { name, price, category }: CreateProductDto,
     @User('email') email: EmailString,

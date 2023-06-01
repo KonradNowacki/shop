@@ -84,7 +84,10 @@ export class UserService implements OnApplicationBootstrap {
   }
 
   async findUserByEmail(email: EmailString): Promise<User> {
-    return await this.userRepository.findOneBy({ email })
+    return await this.userRepository.findOneOrFail({
+      relations: ['roles'],
+      where: { email }
+    });
   }
 
 }

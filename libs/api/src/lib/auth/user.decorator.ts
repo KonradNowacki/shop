@@ -2,12 +2,12 @@ import {createParamDecorator, ExecutionContext, UnauthorizedException} from "@ne
 
 export const User = createParamDecorator(
   (data: string, ctx: ExecutionContext) => {
-    const { user } = ctx.switchToHttp().getRequest();
+    const request = ctx.switchToHttp().getRequest();
 
-    if (!user) {
+    if (!request.user) {
       throw new UnauthorizedException('Incorrect token claims')
     }
 
-    return data ? user?.[data] : user;
+    return data ? request.user?.[data] : request.user;
   },
 );

@@ -9,7 +9,6 @@ import {
   PrimaryGeneratedColumn
 } from "typeorm";
 import {Product} from "../product/product.entity";
-import {RolesEnum} from "@shop/common-utils";
 import {Role} from "./role.entity";
 
 @Entity()
@@ -38,7 +37,7 @@ export class User {
   products: Product[];
 
   @ManyToMany(
-    () => Role,
+    () => Role,r => r.user,
     { nullable: true, cascade: true }
   )
   @JoinTable({
