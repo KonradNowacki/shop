@@ -3,7 +3,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  ContentChildren,
+  ContentChildren, ElementRef, HostListener,
   inject,
   Input,
   QueryList,
@@ -37,10 +37,20 @@ export class TypeaheadDropdownComponent implements ControlValueAccessor, AfterCo
 
   @ContentChildren(TypeaheadDropdownOptionComponent)
   private readonly options: QueryList<TypeaheadDropdownOptionComponent> | undefined;
+
+  // TODO KN Move to a directive?
+  @HostListener('document:click', ['$event'])
+  clickout(event) {
+    if (!this.ref.nativeElement.contains(event.target)) {
+      this.isOptionsDisplayed = false;
+    }
+  }
+
   protected isOptionsDisplayed = false;
   protected readonly control = new FormControl<string>('');
 
-  private readonly cd = inject(ChangeDetectorRef)
+  private readonly cd = inject(ChangeDetectorRef);
+  private readonly ref = inject(ElementRef);
 
   private onChange = (value: any) => {}
   private onTouch = () => {}
