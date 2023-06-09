@@ -12,11 +12,12 @@ import {CommonModule} from '@angular/common';
 import {InputComponent} from "../input/input.component";
 import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, ReactiveFormsModule} from "@angular/forms";
 import {TypeaheadDropdownOptionComponent} from "./typeahead-dropdown-option/typeahead-dropdown-option.component";
+import {ControlErrorAnchorDirective, ControlErrorsDirective} from "@ngneat/error-tailor";
 
 @Component({
   selector: 'shop-typeahead-dropdown',
   standalone: true,
-  imports: [CommonModule, InputComponent, ReactiveFormsModule],
+  imports: [CommonModule, InputComponent, ReactiveFormsModule, ControlErrorAnchorDirective, ControlErrorsDirective],
   templateUrl: './typeahead-dropdown.component.html',
   styleUrls: ['./typeahead-dropdown.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -32,6 +33,7 @@ export class TypeaheadDropdownComponent implements ControlValueAccessor, AfterCo
 
   @Input() label: string;
   @Input() isRequired = false;
+  @Input() hasError: boolean = false;
 
   @ContentChildren(TypeaheadDropdownOptionComponent)
   private readonly options: QueryList<TypeaheadDropdownOptionComponent> | undefined;
@@ -45,7 +47,6 @@ export class TypeaheadDropdownComponent implements ControlValueAccessor, AfterCo
 
   ngAfterContentInit() {
     this.control.valueChanges.subscribe(val => {
-
       this.options?.map(o => {
         o.isDisplayed = o.label.toLowerCase().includes(val?.toLowerCase() || '')
         o.searchText = val || '';
@@ -65,17 +66,19 @@ export class TypeaheadDropdownComponent implements ControlValueAccessor, AfterCo
 
   writeValue(value: any): void {
     this.control.setValue(value);
+    this.onTouch()
   }
 
-  select(value: any, label: string) {
+  select(value: unknown, label: string) {
     this.control.setValue(label);
     this.isOptionsDisplayed = false;
     this.onChange(value)
+    this.onTouch()
     this.cd.detectChanges();
   }
 
   onInputFocused(): void {
-    this.isOptionsDisplayed = true
+    this.isOptionsDisplayed = true;
   }
 
 }

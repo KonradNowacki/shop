@@ -1,6 +1,6 @@
 <div class="wrapper">
 
-  <form [formGroup]="form" (ngSubmit)="submit()">
+  <form [formGroup]="form" (ngSubmit)="submit()" errorTailor>
 
     <shop-input
       [label]="'label.product-name' | transloco"
@@ -17,14 +17,14 @@
       [label]="'label.product-category' | transloco"
       [isRequired]="isProductCategoryRequired"
       [formControl]="form.controls.category"
+      [hasError]="form.controls.category.invalid && form.controls.category.touched"
     >
-      <ng-container *ngFor="let category of productCategories; let index = index">
-        <shop-typeahead-dropdown-option
-          [tabIndex]="index"
-          [value]="category"
-          [label]="('product-category.' + category) | transloco"
-        ></shop-typeahead-dropdown-option>
-      </ng-container>
+      <shop-typeahead-dropdown-option
+        *ngFor="let category of productCategories; let index = index"
+        [tabIndex]="index"
+        [value]="category"
+        [label]="('product-category.' + category) | transloco"
+      ></shop-typeahead-dropdown-option>
     </shop-typeahead-dropdown>
 
     <button shop-button>{{ 'button.save-product' | transloco }}</button>

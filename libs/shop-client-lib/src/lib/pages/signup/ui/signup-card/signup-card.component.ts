@@ -59,14 +59,11 @@ export class SignupCardComponent {
   @Output() readonly submitForm = new EventEmitter<SignupModel>();
 
   protected submit(): void {
-
-    console.log('valid: ', this.form.valid)
-
-    this.form.markAllAsTouched();
-
     if (this.form.valid) {
       const payload = this.form.value as SignupModel
       this.submitForm.emit(payload)
+    } else {
+      this.form.markAllAsTouched();
     }
   }
 

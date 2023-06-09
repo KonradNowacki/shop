@@ -12,16 +12,14 @@ export class AdminProductAddForm {
           validators: [Validators.required],
         }),
 
-        price: new FormControl<number>(0, {
-          validators: [Validators.required, Validators.min(0)],
+        price: new FormControl<number | null>(null, {
+          validators: [Validators.required, Validators.min(1)],
         }),
 
         category: new FormControl<ProductCategory | null>(null, {
           validators: [Validators.required],
         }),
 
-      }, {
-        updateOn: 'change'
       }
     )
   }

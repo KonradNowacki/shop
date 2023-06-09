@@ -1,9 +1,5 @@
 import {
-  AfterContentInit,
-  ChangeDetectionStrategy,
   Component,
-  ContentChild,
-  ElementRef,
   Host,
   Input
 } from '@angular/core';

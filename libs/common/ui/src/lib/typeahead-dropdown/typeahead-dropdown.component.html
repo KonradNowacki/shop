@@ -4,8 +4,10 @@
     type="text"
     class="input__field"
     [formControl]="control"
+    [ngClass]="{'input__field--error': hasError}"
     (focusin)="onInputFocused()"
   >
+  <ng-template controlErrorAnchor #anchor="controlErrorAnchor"></ng-template>
 </div>
 
 <div class="options-panel" *ngIf="isOptionsDisplayed">

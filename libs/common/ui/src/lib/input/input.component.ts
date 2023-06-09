@@ -45,6 +45,10 @@ export class InputComponent implements OnInit {
 
   ngOnInit() {
     this.isRequired = this.control.hasValidator(Validators.required)
+
+    this.control.statusChanges.subscribe(() => {
+      console.log('statusChanges', this.control.status)
+    })
   }
 
 }
