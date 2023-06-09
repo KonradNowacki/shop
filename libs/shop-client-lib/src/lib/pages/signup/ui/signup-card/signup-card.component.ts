@@ -60,10 +60,7 @@ export class SignupCardComponent {
 
   protected submit(): void {
 
-    console.log('valid: ', this.form.valid, this.form.errors, this.form.value)
-    console.log('valid: ', this.form.controls.email.valid)
-    console.log('valid: ', this.form.controls.password.valid)
-    console.log('valid: ', this.form.controls.repeatedPassword.valid)
+    console.log('valid: ', this.form.valid)
 
     this.form.markAllAsTouched();
 

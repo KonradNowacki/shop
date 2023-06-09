@@ -38,8 +38,8 @@ export class UserController {
 
   @Post('user-exists')
   async userExist(@Body() { email }: UserExistsDto): Promise<boolean> {
-    this.logger.log(`${UserController.name} invoked doesUserExist with email ${email}`);
-    return !!(await this.userService.findUserByEmail(email))
+    this.logger.log(`${UserController.name} invoked userExist with email ${email}`);
+    return await this.userService.emailExists(email)
   }
 
 }

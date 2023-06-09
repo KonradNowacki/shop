@@ -1,12 +1,11 @@
 import {inject, Injectable} from "@angular/core";
 import {Actions, createEffect, ofType} from "@ngrx/effects";
-import {AuthApiService} from "../../../api/auth-api.service";
 import {Router} from "@angular/router";
-import {SigninActions} from "../../signin/+state/signin.actions";
 import {catchError, EMPTY, exhaustMap, tap} from "rxjs";
 import {AdminProductsActions} from "./admin-products.actions";
 import {ProductsApiService} from "../../../api/products-api.service";
 import {CreateProductDto} from "@shop/common-api";
+import {AdminProductsFacade} from "./admin-products.facade";
 
 @Injectable()
 export class AdminProductsEffects {
@@ -22,7 +21,9 @@ export class AdminProductsEffects {
         const { name, price, category } = product;
         const newProduct: CreateProductDto = { name, price, category }
         return this.productsApiService.createProduct(newProduct).pipe(
-          // TODO KN Append returned product to store
+          tap(() => {
+            this.router.navigate(['/admin/products']);
+          }),
           catchError(() => {
             // TODO KN Handle error
             return EMPTY

@@ -41,7 +41,7 @@ export class ProductController {
 
   @Get('my')
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(RolesEnum.ADMIN)
+  @Roles(RolesEnum.USER)
   async getLoggedUsersProducts(
     @User('email') email: EmailString,
     @Query(QueryParam.CATEGORY) category?: ProductCategory,

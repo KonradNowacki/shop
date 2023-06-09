@@ -45,6 +45,8 @@ export class UserService implements OnApplicationBootstrap {
       throw new NotAcceptableException(`Email ${email} already exists in db`)
     }
 
+    // TODO KN Move the logic to vaidlate function
+
     // TODO Add password validation
     // Min 8 chars
     // Min 1 capital
