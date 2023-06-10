@@ -2,7 +2,7 @@ import {
   Body,
   Controller,
   Logger,
-  Post, UseGuards
+  Post, UseGuards, UsePipes, ValidationPipe
 } from "@nestjs/common";
 import {UserService} from "./user.service";
 import {User} from "./user.entity";
@@ -11,7 +11,7 @@ import {AuthService} from "../auth/auth.service";
 import {AccessTokenDto, SigninDto, UserCreateDto, UserExistsDto} from "@shop/common-api";
 import {ApiTags} from "@nestjs/swagger";
 
-
+@UsePipes(new ValidationPipe())
 @ApiTags('auth')
 @Controller('auth')
 export class UserController {

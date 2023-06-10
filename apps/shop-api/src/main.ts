@@ -1,10 +1,9 @@
-import {Logger, ValidationPipe} from "@nestjs/common";
+import {Logger} from "@nestjs/common";
 import { NestFactory } from "@nestjs/core";
 
 import { AppModule } from "./app/app.module";
 import cookieParser from "cookie-parser";
 import {DocumentBuilder, SwaggerModule} from "@nestjs/swagger";
-import {RolesGuard} from "../../../libs/api/src/lib/auth/guards/roles.guard";
 
 
 async function bootstrap() {
@@ -12,7 +11,10 @@ async function bootstrap() {
 
   app.use(cookieParser())
 
-  app.useGlobalPipes(new ValidationPipe())
+  // app.useGlobalPipes(new ValidationPipe({
+  //   validateCustomDecorators: false,
+  //   transform: true
+  // }))
 
   app.enableCors({
     origin: 'http://localhost:4200', // TODO KN Address for angualr

@@ -10,6 +10,7 @@ import {
 } from "typeorm";
 import {Product} from "../product/product.entity";
 import {Role} from "./role.entity";
+import {Exclude} from "class-transformer";
 
 @Entity()
 export class User {
@@ -20,12 +21,15 @@ export class User {
   @Column()
   email: string;
 
+  @Exclude()
   @Column()
   password: string;
 
+  @Exclude()
   @Column()
   emailActivationCode: string
 
+  @Exclude()
   @Column({ default: false })
   isActive: boolean;
 

@@ -16,10 +16,15 @@ export class Product {
 
   @Column({
     type: 'enum',
-    enum: ProductCategory,
-    nullable: false
+    enum: ProductCategory
   })
   category: string;
+
+  @Column({
+    nullable: true,
+    length: 255
+  })
+  filename: string;
 
   @ManyToOne(() => User)
   @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })
