@@ -1,8 +1,7 @@
-import {IsEmail, IsNotEmpty, IsString} from "class-validator";
-import {EmailString} from "@shop/common-utils";
+import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
+import { EmailString } from '@shop/common-utils';
 
 export class SigninDto {
-
   @IsNotEmpty()
   @IsEmail()
   readonly email?: EmailString;
@@ -10,5 +9,4 @@ export class SigninDto {
   @IsNotEmpty()
   @IsString()
   readonly password?: string;
-
 }

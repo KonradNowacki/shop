@@ -1,11 +1,8 @@
-import {
-  ChangeDetectionStrategy,
-  Component
-} from '@angular/core';
-import {RouterLink} from "@angular/router";
-import {JsonPipe, NgIf} from "@angular/common";
-import {TranslocoModule} from "@ngneat/transloco";
-import {ButtonComponent} from "../button/button.component";
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { JsonPipe, NgIf } from '@angular/common';
+import { TranslocoModule } from '@ngneat/transloco';
+import { ButtonComponent } from '../button/button.component';
 
 @Component({
   selector: 'shop-navbar',
@@ -15,6 +12,4 @@ import {ButtonComponent} from "../button/button.component";
   styleUrls: ['./navbar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NavbarComponent {
-
-}
+export class NavbarComponent {}

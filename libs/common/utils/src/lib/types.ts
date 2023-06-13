@@ -1,1 +1,1 @@
-export type EmailString = `${string}@${string}.${string}`
+export type EmailString = `${string}@${string}.${string}`;

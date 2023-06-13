@@ -1,15 +1,14 @@
-import {Logger} from "@nestjs/common";
-import { NestFactory } from "@nestjs/core";
+import { Logger } from '@nestjs/common';
+import { NestFactory } from '@nestjs/core';
 
-import { AppModule } from "./app/app.module";
-import cookieParser from "cookie-parser";
-import {DocumentBuilder, SwaggerModule} from "@nestjs/swagger";
-
+import { AppModule } from './app/app.module';
+import cookieParser from 'cookie-parser';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  app.use(cookieParser())
+  app.use(cookieParser());
 
   // app.useGlobalPipes(new ValidationPipe({
   //   validateCustomDecorators: false,
@@ -18,7 +17,7 @@ async function bootstrap() {
 
   app.enableCors({
     origin: 'http://localhost:4200', // TODO KN Address for angualr
-  })
+  });
 
   const config = new DocumentBuilder()
     .setTitle('Shop')
@@ -31,9 +30,7 @@ async function bootstrap() {
 
   const port = process.env.PORT || 3000;
   await app.listen(port);
-  Logger.log(
-    `🚀 Application is running on: http://localhost:${port}/`
-  );
+  Logger.log(`🚀 Application is running on: http://localhost:${port}/`);
 }
 
 bootstrap();

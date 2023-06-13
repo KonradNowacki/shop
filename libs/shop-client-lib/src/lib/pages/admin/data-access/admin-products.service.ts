@@ -1,13 +1,12 @@
-import {inject, Injectable} from "@angular/core";
-import {ProductsApiService} from "../../../api/products-api.service";
-import {Observable} from "rxjs";
-import {AdminProductDetailsDto, AdminProductDto} from "@shop/common-api";
-import {AdminProductModel} from "../+store/admin-product.model";
-import {AdminProductsFacade} from "../+store/admin-products.facade";
+import { inject, Injectable } from '@angular/core';
+import { ProductsApiService } from '../../../api/products-api.service';
+import { Observable } from 'rxjs';
+import { AdminProductDetailsDto, AdminProductDto } from '@shop/common-api';
+import { AdminProductModel } from '../+store/admin-product.model';
+import { AdminProductsFacade } from '../+store/admin-products.facade';
 
 @Injectable()
 export class AdminProductsService {
-
   private readonly productsApiService = inject(ProductsApiService);
   private readonly adminProductsFacade = inject(AdminProductsFacade);
 
@@ -19,12 +18,14 @@ export class AdminProductsService {
     this.adminProductsFacade.createProduct(product);
   }
 
-  getAdminProducts(): Observable<AdminProductModel[]> {
+  // TODO KN Change type map
+  getAdminProducts(): Observable<any[]> {
     return this.productsApiService.getLoggedInUsersProducts();
   }
 
-  getAdminProductDetails(productId: number): Observable<AdminProductDetailsDto> {
+  getAdminProductDetails(
+    productId: number
+  ): Observable<AdminProductDetailsDto> {
     return this.productsApiService.getLoggedInUsersProductDetails(productId);
   }
-
 }

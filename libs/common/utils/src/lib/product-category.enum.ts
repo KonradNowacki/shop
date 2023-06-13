@@ -8,5 +8,4 @@ export enum ProductCategory {
   ENTERTAINMENT = 'ENTERTAINMENT',
   SPORT = 'SPORT',
   SERVICES = 'SERVICES',
-
 }

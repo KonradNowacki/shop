@@ -1,12 +1,14 @@
 <div class="input">
-  <label class="input__label ">{{ label }}<span *ngIf="isRequired">*</span></label>
+  <label class="input__label"
+    >{{ label }}<span *ngIf="isRequired">*</span></label
+  >
   <input
     type="text"
     class="input__field"
     [formControl]="control"
-    [ngClass]="{'input__field--error': hasError}"
+    [ngClass]="{ 'input__field--error': hasError }"
     (focusin)="onInputFocused()"
-  >
+  />
   <ng-template controlErrorAnchor #anchor="controlErrorAnchor"></ng-template>
 </div>
 

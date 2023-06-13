@@ -1,33 +1,36 @@
-import {Injectable, UnauthorizedException} from "@nestjs/common";
-import {InjectRepository} from "@nestjs/typeorm";
-import {Between, Repository} from "typeorm";
-import {Product} from "./product.entity";
-import {EmailString, ProductCategory} from "@shop/common-utils";
-import {UserService} from "../user/user.service";
-import {User} from "../user/user.entity";
-import {FindOptionsWhere} from "typeorm/find-options/FindOptionsWhere";
+import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Between, Repository } from 'typeorm';
+import { Product } from './product.entity';
+import { EmailString, ProductCategory } from '@shop/common-utils';
+import { UserService } from '../user/user.service';
+import { User } from '../user/user.entity';
+import { FindOptionsWhere } from 'typeorm/find-options/FindOptionsWhere';
 
 @Injectable()
 export class ProductService {
-
   constructor(
-    @InjectRepository(Product) private readonly productRepository: Repository<Product>,
+    @InjectRepository(Product)
+    private readonly productRepository: Repository<Product>,
     private readonly userService: UserService
-  ) {
-  }
+  ) {}
 
   async createProduct(
     name: string,
     price: number,
     category: ProductCategory,
     email: EmailString,
-    filename: string
+    filename?: string
   ) {
     const owner = await this.userService.findUserByEmail(email);
 
-    console.log(name, price, category, owner, filename)
-
-    const product = this.productRepository.create({ name, price, owner, category, filename });
+    const product = this.productRepository.create({
+      name,
+      price,
+      owner,
+      category,
+      filename,
+    });
 
     return await this.productRepository.save(product, { transaction: true });
   }
@@ -35,9 +38,10 @@ export class ProductService {
   async getProducts(
     ownerEmail?: EmailString,
     category?: ProductCategory,
-    minPrice = 0, maxPrice = 999999,
+    minPrice = 0,
+    maxPrice = 999999,
     limit = 10
-    ): Promise<Product[]> {
+  ): Promise<Product[]> {
     let owner: User | undefined = undefined;
 
     if (ownerEmail) {
@@ -50,7 +54,7 @@ export class ProductService {
         price: Between(minPrice, maxPrice),
         // owner
       },
-      take: limit
+      take: limit,
     });
   }
 
@@ -65,5 +69,4 @@ export class ProductService {
   async getLoggedUsersProductDetails(id: number): Promise<Product | null> {
     return await this.productRepository.findOneBy({ id });
   }
-
 }

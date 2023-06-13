@@ -1,7 +1,8 @@
-import {ProductCategory} from "@shop/common-utils";
+import { ProductCategory } from '@shop/common-utils';
 
 export interface AdminProductModel {
   readonly name: string;
   readonly price: number;
-  readonly category: ProductCategory
+  readonly category: ProductCategory;
+  readonly image: File;
 }

@@ -1,0 +1,10 @@
+<section shopUploadBox (fileDropped)="selectFile($event)">
+  <input
+    type="file"
+    #fileRef
+    id="file-drop-area"
+  />
+  <h3>{{ 'text.drag-ang-drop-here' | transloco }}</h3>
+  <h3>{{ 'text.or' | transloco }}</h3>
+  <button shop-button>{{ 'button.browse-file' | transloco }}</button>
+</section>

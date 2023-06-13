@@ -5,6 +5,7 @@
 /.env.production
 /.env
 .env
+uploads
 
 # compiled output
 dist

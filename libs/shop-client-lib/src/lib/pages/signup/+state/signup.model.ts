@@ -1,4 +1,4 @@
-import {EmailString} from "@shop/common-utils";
+import { EmailString } from '@shop/common-utils';
 
 export interface SignupModel {
   email: EmailString;

@@ -22,12 +22,12 @@ describe('ButtonComponent', () => {
   it('should display correct type and color', () => {
     // GIVEN
     component.type = 'outline';
-    component.color = 'success'
+    component.color = 'success';
 
     // WHEN
     fixture.detectChanges();
 
     // THEN
-    expect(component.buttonClass).toBe('outline--success')
+    expect(component.buttonClass).toBe('outline--success');
   });
 });

@@ -1,4 +1,4 @@
-import {ProductCategory} from "@shop/common-utils";
+import { ProductCategory } from '@shop/common-utils';
 
 export class AdminProductDto {
   readonly id: number;

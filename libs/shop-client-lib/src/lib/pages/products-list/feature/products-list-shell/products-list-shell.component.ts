@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {ProductsSearchBarComponent} from "../products-search-bar/products-search-bar.component";
-import {ListComponent} from "../list/list.component";
+import { ProductsSearchBarComponent } from '../products-search-bar/products-search-bar.component';
+import { ListComponent } from '../list/list.component';
 
 @Component({
   selector: 'shop-products-list-shell',
@@ -11,16 +11,15 @@ import {ListComponent} from "../list/list.component";
       <shop-list></shop-list>
     </main>
   `,
-  styles: [`
-    main {
-      display: flex;
-      flex-direction: column;
-      justify-items: center;
-    }
-  `],
-  imports: [
-    ProductsSearchBarComponent,
-    ListComponent,
-  ]
+  styles: [
+    `
+      main {
+        display: flex;
+        flex-direction: column;
+        justify-items: center;
+      }
+    `,
+  ],
+  imports: [ProductsSearchBarComponent, ListComponent],
 })
 export class ProductsListShellComponent {}

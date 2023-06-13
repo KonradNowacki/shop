@@ -24,19 +24,38 @@
   border: none;
 
   &.basic {
-    &--primary { @include basic(var(--color-primary)) }
-    &--secondary { @include basic(var(--color-secondary)) }
-    &--warn { @include basic(var(--color-warn)) }
-    &--success { @include basic(var(--color-success)) }
-    &--error { @include basic(var(--color-error)) }
+    &--primary {
+      @include basic(var(--color-primary));
+    }
+    &--secondary {
+      @include basic(var(--color-secondary));
+    }
+    &--warn {
+      @include basic(var(--color-warn));
+    }
+    &--success {
+      @include basic(var(--color-success));
+    }
+    &--error {
+      @include basic(var(--color-error));
+    }
   }
 
   &.outline {
-    &--primary { @include outline(var(--color-secondary)) }
-    &--secondary { @include outline(var(--color-secondary)) }
-    &--warn { @include outline(var(--color-warn)) }
-    &--success { @include outline(var(--color-success)) }
-    &--error { @include outline(var(--color-error)) }
+    &--primary {
+      @include outline(var(--color-secondary));
+    }
+    &--secondary {
+      @include outline(var(--color-secondary));
+    }
+    &--warn {
+      @include outline(var(--color-warn));
+    }
+    &--success {
+      @include outline(var(--color-success));
+    }
+    &--error {
+      @include outline(var(--color-error));
+    }
   }
-
 }

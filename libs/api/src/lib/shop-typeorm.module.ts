@@ -1,8 +1,8 @@
-import {Module} from "@nestjs/common";
-import {TypeOrmModule} from "@nestjs/typeorm";
-import {User} from "./user/user.entity";
-import {Product} from "./product/product.entity";
-import {Role} from "./user/role.entity";
+import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { User } from './user/user.entity';
+import { Product } from './product/product.entity';
+import { Role } from './user/role.entity';
 
 @Module({
   imports: [
@@ -16,6 +16,6 @@ import {Role} from "./user/role.entity";
       entities: [User, Product, Role],
       synchronize: true,
     }),
-  ]
+  ],
 })
 export class ShopTypeormModule {}

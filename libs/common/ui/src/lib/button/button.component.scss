@@ -15,8 +15,12 @@ $error: red;
   border: 2px solid $color;
   color: $color;
   background: transparent;
-  &:hover { @include outline-hover-active(lighten($color, 15%)) }
-  &:active { @include outline-hover-active(lighten($color, 25%)) }
+  &:hover {
+    @include outline-hover-active(lighten($color, 15%));
+  }
+  &:active {
+    @include outline-hover-active(lighten($color, 25%));
+  }
 }
 
 @mixin basic($color) {
@@ -42,19 +46,38 @@ $error: red;
   border: none;
 
   &.basic {
-    &--primary { @include basic($primary) }
-    &--secondary { @include basic($secondary) }
-    &--warn { @include basic($warn) }
-    &--success { @include basic($success) }
-    &--error { @include basic($error) }
+    &--primary {
+      @include basic($primary);
+    }
+    &--secondary {
+      @include basic($secondary);
+    }
+    &--warn {
+      @include basic($warn);
+    }
+    &--success {
+      @include basic($success);
+    }
+    &--error {
+      @include basic($error);
+    }
   }
 
   &.outline {
-    &--primary { @include outline($primary) }
-    &--secondary { @include outline($secondary) }
-    &--warn { @include outline($warn) }
-    &--success { @include outline($success) }
-    &--error { @include outline($error) }
+    &--primary {
+      @include outline($primary);
+    }
+    &--secondary {
+      @include outline($secondary);
+    }
+    &--warn {
+      @include outline($warn);
+    }
+    &--success {
+      @include outline($success);
+    }
+    &--error {
+      @include outline($error);
+    }
   }
-
 }

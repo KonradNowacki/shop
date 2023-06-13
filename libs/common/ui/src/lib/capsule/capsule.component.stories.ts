@@ -8,17 +8,18 @@ export default {
 
 export const Capsule = {
   render: (args: CapsuleComponent) => ({
-    template: '<button shop-capsule [type]="type" [color]="color">Capsule</button>',
+    template:
+      '<button shop-capsule [type]="type" [color]="color">Capsule</button>',
     props: args,
   }),
   argTypes: {
     type: {
       options: ['basic', 'outline'],
       control: { type: 'radio' },
-      default: 'basic'
+      default: 'basic',
     },
     color: {
-      options: ['primary', 'secondary', 'success' , 'warn' , 'error'],
+      options: ['primary', 'secondary', 'success', 'warn', 'error'],
       control: { type: 'radio' },
     },
   },

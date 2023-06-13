@@ -1,18 +1,23 @@
-import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {AdminProductAddForm} from "../../utils/admin-product-add.form";
+import { AdminProductAddForm } from '../../utils/admin-product-add.form';
 import {
   ButtonComponent,
   InputComponent,
   TypeaheadDropdownComponent,
-  TypeaheadDropdownOptionComponent
-} from "@shop/common-ui";
-import {TranslocoModule} from "@ngneat/transloco";
-import {ReactiveFormsModule, Validators} from "@angular/forms";
-import {ProductCategory} from "@shop/common-utils";
-import {AdminProductsService} from "../../../../data-access/admin-products.service";
-import {AdminProductModel} from "../../../../+store/admin-product.model";
-import {ControlErrorAnchorDirective, ControlErrorsDirective, FormActionDirective} from "@ngneat/error-tailor";
+  TypeaheadDropdownOptionComponent,
+  UploadBoxComponent,
+} from '@shop/common-ui';
+import { TranslocoModule } from '@ngneat/transloco';
+import { ReactiveFormsModule, Validators } from '@angular/forms';
+import { ProductCategory } from '@shop/common-utils';
+import { AdminProductsService } from '../../../../data-access/admin-products.service';
+import { AdminProductModel } from '../../../../+store/admin-product.model';
+import {
+  ControlErrorAnchorDirective,
+  ControlErrorsDirective,
+  FormActionDirective,
+} from '@ngneat/error-tailor';
 
 @Component({
   selector: 'shop-admin-product-add-shell',
@@ -21,19 +26,33 @@ import {ControlErrorAnchorDirective, ControlErrorsDirective, FormActionDirective
   styleUrls: ['./admin-product-add-shell.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [AdminProductAddForm],
-  imports: [CommonModule,
-    InputComponent, TranslocoModule,
-    ReactiveFormsModule, ButtonComponent,
-    TypeaheadDropdownComponent, TypeaheadDropdownOptionComponent,
-    FormActionDirective, ControlErrorsDirective, ControlErrorAnchorDirective],
+  imports: [
+    CommonModule,
+    InputComponent,
+    TranslocoModule,
+    ReactiveFormsModule,
+    ButtonComponent,
+    TypeaheadDropdownComponent,
+    TypeaheadDropdownOptionComponent,
+    FormActionDirective,
+    ControlErrorsDirective,
+    ControlErrorAnchorDirective,
+    UploadBoxComponent,
+  ],
 })
-export class AdminProductAddShellComponent {
+export class AdminProductAddShellComponent implements OnInit {
   protected readonly form = inject(AdminProductAddForm).buildForm();
   protected readonly productCategories = Object.keys(ProductCategory);
-  private readonly adminProductsService = inject(AdminProductsService)
+  private readonly adminProductsService = inject(AdminProductsService);
 
   get isProductCategoryRequired(): boolean {
     return this.form.controls.category.hasValidator(Validators.required);
+  }
+
+  ngOnInit() {
+    this.form.valueChanges.subscribe((value) => {
+      console.log('value changes ', value)
+    });
   }
 
   submit(): void {

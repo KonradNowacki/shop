@@ -1,4 +1,4 @@
-@import "libs/common/ui/src/scss/input";
+@import 'libs/common/ui/src/scss/input';
 
 @include input();
 
@@ -6,4 +6,3 @@
   border-radius: var(--border-radius-large);
   box-shadow: 0 2px 7px var(--color-secondary);
 }
-

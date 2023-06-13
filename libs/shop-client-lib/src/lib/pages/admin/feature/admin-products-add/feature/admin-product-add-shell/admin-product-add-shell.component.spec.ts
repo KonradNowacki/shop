@@ -8,9 +8,8 @@ describe('AdminProductAddShellComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ AdminProductAddShellComponent ]
-    })
-    .compileComponents();
+      imports: [AdminProductAddShellComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(AdminProductAddShellComponent);
     component = fixture.componentInstance;

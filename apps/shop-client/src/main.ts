@@ -7,13 +7,19 @@ import { appRoutes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
 import { provideErrorTailorConfig } from '@ngneat/error-tailor';
 import {
+  forwardRef,
   importProvidersFrom,
   inject,
   Injectable,
   isDevMode,
 } from '@angular/core';
-import {HttpClient, provideHttpClient, withInterceptors, withInterceptorsFromDi} from '@angular/common/http';
 import {
+  HttpClient,
+  provideHttpClient,
+  withInterceptors,
+} from '@angular/common/http';
+import {
+  HashMap,
   Translation,
   TRANSLOCO_CONFIG,
   TRANSLOCO_LOADER,
@@ -22,11 +28,12 @@ import {
   TranslocoModule,
   TranslocoService,
 } from '@ngneat/transloco';
-import {accessTokenInterceptor, ErrorKey} from '@shop/common-utils';
+import { accessTokenInterceptor, ErrorKey } from '@shop/common-utils';
 import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
-import {JwtModule} from "@auth0/angular-jwt";
-
+import { JwtModule } from '@auth0/angular-jwt';
+import { UploadBoxComponent } from '@shop/common-ui';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Injectable({ providedIn: 'root' })
 export class TranslocoHttpLoader implements TranslocoLoader {
@@ -39,30 +46,21 @@ export class TranslocoHttpLoader implements TranslocoLoader {
 
 bootstrapApplication(AppComponent, {
   providers: [
-
     provideEffects(),
     provideStore(),
 
-
-
-
     provideRouter(appRoutes, withEnabledBlockingInitialNavigation()),
 
-    provideHttpClient(
-      withInterceptors([
-        accessTokenInterceptor
-      ])
-    ),
+    provideHttpClient(withInterceptors([accessTokenInterceptor])),
 
     importProvidersFrom(
       TranslocoModule,
       JwtModule.forRoot({
         config: {
           tokenGetter: () => localStorage.getItem('access_token'),
-        }
+        },
       })
     ),
-
 
     {
       provide: TRANSLOCO_CONFIG,
@@ -78,25 +76,32 @@ bootstrapApplication(AppComponent, {
     provideErrorTailorConfig({
       errors: {
         useFactory: (t: TranslocoService) => {
+          const key = (error: ErrorKey, params?: HashMap) =>
+            t.translate(`error.${error}`, { ...params });
+
           return {
-            [ErrorKey.REQUIRED]: () =>
-              t.translate(`error.${ErrorKey.REQUIRED}`),
-            [ErrorKey.EMAIL]: () =>
-              t.translate(`error.${ErrorKey.EMAIL}`),
+            [ErrorKey.REQUIRED]: () => key(ErrorKey.REQUIRED),
+            [ErrorKey.EMAIL]: () => key(ErrorKey.EMAIL),
             [ErrorKey.MIN_LENGTH]: ({ requiredLength }) =>
-              t.translate(`error.${ErrorKey.MIN_LENGTH}`, { requiredLength }),
+              key(ErrorKey.MIN_LENGTH, { requiredLength }),
             [ErrorKey.SPECIAL_CHAR_REQUIRED]: () =>
-              t.translate(`error.${ErrorKey.SPECIAL_CHAR_REQUIRED}`),
+              key(ErrorKey.SPECIAL_CHAR_REQUIRED),
             [ErrorKey.CAPITAL_LETTER_REQUIRED]: () =>
-              t.translate(`error.${ErrorKey.CAPITAL_LETTER_REQUIRED}`),
-            [ErrorKey.NUMBER_REQUIRED]: () =>
-              t.translate(`error.${ErrorKey.NUMBER_REQUIRED}`),
-            [ErrorKey.EMAIL_NOT_UNIQUE]: () =>
-              t.translate(`error.${ErrorKey.EMAIL_NOT_UNIQUE}`),
+              key(ErrorKey.CAPITAL_LETTER_REQUIRED),
+            [ErrorKey.NUMBER_REQUIRED]: () => key(ErrorKey.NUMBER_REQUIRED),
+            [ErrorKey.EMAIL_NOT_UNIQUE]: () => key(ErrorKey.EMAIL_NOT_UNIQUE),
           };
         },
         deps: [TranslocoService],
       },
     }),
+
+    // {
+    //   provide: NG_VALUE_ACCESSOR,
+    //   useExisting: forwardRef(() => UploadBoxComponent),
+    //   multi: true,
+    // },
+
+
   ],
 }).catch((err) => console.error(err));

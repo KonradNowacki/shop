@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CapsuleComponent } from './capsule.component';
-import {By} from "@angular/platform-browser";
+import { By } from '@angular/platform-browser';
 
 describe('CapsuleComponent', () => {
   let component: CapsuleComponent;
@@ -23,12 +23,12 @@ describe('CapsuleComponent', () => {
   it('should display correct type and color', () => {
     // GIVEN
     component.type = 'outline';
-    component.color = 'success'
+    component.color = 'success';
 
     // WHEN
     fixture.detectChanges();
 
     // THEN
-    expect(component.capsuleClass).toBe('outline--success')
+    expect(component.capsuleClass).toBe('outline--success');
   });
 });

@@ -1,11 +1,11 @@
 div[actions] {
   display: flex;
   justify-content: flex-end;
-  gap: var(--btn-gap)
+  gap: var(--btn-gap);
 }
 
 div[content] {
   display: flex;
   flex-direction: column;
-  gap: var(--btn-gap)
+  gap: var(--btn-gap);
 }

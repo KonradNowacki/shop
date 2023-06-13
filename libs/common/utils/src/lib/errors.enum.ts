@@ -7,5 +7,4 @@ export enum ErrorKey {
   SPECIAL_CHAR_REQUIRED = 'special-char-required',
   CAPITAL_LETTER_REQUIRED = 'capital-letter-required',
   NUMBER_REQUIRED = 'number-required',
-
 }

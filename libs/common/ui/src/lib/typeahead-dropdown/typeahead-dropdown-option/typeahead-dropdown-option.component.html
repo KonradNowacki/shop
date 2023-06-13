@@ -5,7 +5,7 @@
   *ngIf="isDisplayed"
 >
   <ng-content select="[icon-before]"></ng-content>
-<!--   TODO KN There is a safer attribute than innerHTML - use the safer one -->
-  <div class="label" [innerHtml]="label | boldTextFragment:(searchText)"></div>
+  <!--   TODO KN There is a safer attribute than innerHTML - use the safer one -->
+  <div class="label" [innerHtml]="label | boldTextFragment : searchText"></div>
   <ng-content select="[icon-after]"></ng-content>
 </div>

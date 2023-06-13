@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, Input,} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'shop-auth-card',
@@ -22,7 +22,5 @@ import {ChangeDetectionStrategy, Component, Input,} from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AuthCardComponent {
-
   @Input() title = '';
-
 }

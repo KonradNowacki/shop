@@ -1,5 +1,5 @@
-import {User} from "../user/user.entity";
+import { User } from '../user/user.entity';
 
 export type JwtUser = {
-  user: Pick<User, 'id' | 'email' | 'roles'>
-}
+  user: Pick<User, 'id' | 'email' | 'roles'>;
+};
