@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AdminProductsService } from '../../data-access/admin-products.service';
+import { AdminProductsService } from '../../../data-access/admin-products.service';
 import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({

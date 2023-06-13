@@ -84,8 +84,6 @@ export class ProductController {
 
     const { name, price, category } = data;
 
-    console.log('file ', file)
-
     return await this.productService.createProduct(
       name,
       price,
@@ -130,15 +128,11 @@ export class ProductController {
       maxPrice,
       limit
     );
+
+    console.log('products', products);
+
     return products.map(ProductMapper.entityToAdminProductDto);
   }
-
-  // TODO import { IsNumberString } from 'class-validator';
-  //
-  // export class FindOneParams {
-  //   @IsNumberString()
-  //   id: number;
-  // }
 
   @Get('my/:productId')
   @UseGuards(JwtAuthGuard)

@@ -12,6 +12,7 @@
       <td>{{ product.name }}</td>
       <td>{{ product.price | currency }}</td>
       <td>{{ 'product-category.' + product.category | transloco }}</td>
+      <img [src]="product.image" [alt]="'logo of product ' + product.name">
     </tr>
   </table>
 </div>
