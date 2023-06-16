@@ -5,7 +5,6 @@ import { Product } from './product.entity';
 import { EmailString, ProductCategory } from '@shop/common-utils';
 import { UserService } from '../user/user.service';
 import { User } from '../user/user.entity';
-import { FindOptionsWhere } from 'typeorm/find-options/FindOptionsWhere';
 
 @Injectable()
 export class ProductService {

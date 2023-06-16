@@ -1,4 +1,4 @@
-import { ProductCategory } from '@shop/common-utils';
+import {Base64Image, ProductCategory} from '@shop/common-utils';
 
 export class AdminProductDetailsDto {
   readonly id: number;

@@ -8,6 +8,6 @@ export class SignupFacade {
   private readonly store = inject(Store);
 
   createUser(user: SignupModel): void {
-    this.store.dispatch(SignupActions.createuser({ user }));
+    this.store.dispatch(SignupActions.createUser({ user }));
   }
 }

@@ -12,7 +12,7 @@ export class SignupEffects {
   createUser$ = createEffect(
     () => {
       return this.$actions.pipe(
-        ofType(SignupActions.createuser),
+        ofType(SignupActions.createUser),
         exhaustMap(({ user }) => {
           console.log('from effect');
           return this.authService.createUser(user);

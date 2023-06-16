@@ -16,7 +16,7 @@ export class AdminProductsEffects {
   createProduct$ = createEffect(
     () => {
       return this.$actions.pipe(
-        ofType(AdminProductsActions.createproduct),
+        ofType(AdminProductsActions.createProduct),
         exhaustMap(({ product }) => {
           const { image, name, price, category } = product;
           const newProduct: CreateProductDto = { name, price, category };

@@ -23,9 +23,8 @@ export class ProductsApiService {
   ): Observable<HttpEvent<AdminProductDto>> {
     const formData = new FormData();
     formData.append('data', JSON.stringify(product)); // TODO How to type it?
-    formData.append('image', image);
+    formData.append('image', image); // TODO Add image and data to enums
 
-    console.log('formData ', product, image);
     return this.httpClient.post<AdminProductDto>(
       'http://localhost:3000/products',
       formData,

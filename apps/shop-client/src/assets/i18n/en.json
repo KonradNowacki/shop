@@ -25,5 +25,10 @@
   "product-category.HEALTH": "Health",
   "product-category.ENTERTAINMENT": "Entertainment",
   "product-category.SPORT": "Sport",
-  "product-category.SERVICES": "Services"
+  "product-category.SERVICES": "Services",
+
+  "table-header.name": "Name",
+  "table-header.price":  "Price",
+  "table-header.category": "Category",
+  "table-header.actions":  "Actions"
 }

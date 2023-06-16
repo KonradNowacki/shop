@@ -1,10 +1,11 @@
 <div class="wrapper">
   <table>
     <tr>
-      <th>{{ 'table-header.num' | transloco | titlecase }}</th>
+      <th></th>
       <th>{{ 'table-header.name' | transloco | titlecase }}</th>
       <th>{{ 'table-header.price' | transloco | titlecase }}</th>
       <th>{{ 'table-header.category' | transloco | titlecase }}</th>
+      <th>{{ 'table-header.actions' | transloco | titlecase }}</th>
     </tr>
 
     <tr *ngFor="let product of products$ | async; let index = index">
@@ -12,7 +13,10 @@
       <td>{{ product.name }}</td>
       <td>{{ product.price | currency }}</td>
       <td>{{ 'product-category.' + product.category | transloco }}</td>
-      <img [src]="product.image" [alt]="'logo of product ' + product.name">
+      <td>
+        <button type="button" [routerLink]="'/admin/products/edit/' + product.id">{{ 'button.edit' | transloco }}</button>
+          <button>{{ 'button.remove' }}</button>
+      </td>
     </tr>
   </table>
 </div>

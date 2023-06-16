@@ -129,8 +129,6 @@ export class ProductController {
       limit
     );
 
-    console.log('products', products);
-
     return products.map(ProductMapper.entityToAdminProductDto);
   }
 
@@ -144,9 +142,7 @@ export class ProductController {
     this.logger.log(
       `${ProductController.name} invoked getLoggedUsersProductDetails with productId ${productId}`
     );
-    const product = await this.productService.getLoggedUsersProductDetails(
-      productId
-    );
+    const product = await this.productService.getLoggedUsersProductDetails(productId);
 
     if (!product) {
       throw new NotFoundException();

@@ -1,6 +1,6 @@
 import { bootstrapApplication } from '@angular/platform-browser';
 import {
-  provideRouter,
+  provideRouter, withComponentInputBinding,
   withEnabledBlockingInitialNavigation,
 } from '@angular/router';
 import { appRoutes } from './app/app.routes';
@@ -49,7 +49,7 @@ bootstrapApplication(AppComponent, {
     provideEffects(),
     provideStore(),
 
-    provideRouter(appRoutes, withEnabledBlockingInitialNavigation()),
+    provideRouter(appRoutes, withEnabledBlockingInitialNavigation(), withComponentInputBinding()),
 
     provideHttpClient(withInterceptors([accessTokenInterceptor])),
 

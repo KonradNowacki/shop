@@ -8,6 +8,6 @@ export class AdminProductsFacade {
   private readonly store = inject(Store);
 
   createProduct(product: AdminProductModel): void {
-    this.store.dispatch(AdminProductsActions.createproduct({ product }));
+    this.store.dispatch(AdminProductsActions.createProduct({ product }));
   }
 }
