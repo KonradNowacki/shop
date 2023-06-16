@@ -1,13 +1,13 @@
 import { bootstrapApplication } from '@angular/platform-browser';
 import {
-  provideRouter, withComponentInputBinding,
+  provideRouter,
+  withComponentInputBinding,
   withEnabledBlockingInitialNavigation,
 } from '@angular/router';
 import { appRoutes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
 import { provideErrorTailorConfig } from '@ngneat/error-tailor';
 import {
-  forwardRef,
   importProvidersFrom,
   inject,
   Injectable,
@@ -28,12 +28,16 @@ import {
   TranslocoModule,
   TranslocoService,
 } from '@ngneat/transloco';
-import {accessTokenInterceptor, ErrorKey, StorageKey} from '@shop/common-utils';
+import {
+  accessTokenInterceptor,
+  ErrorKey,
+  StorageKey,
+} from '@shop/common-utils';
 import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { JwtModule } from '@auth0/angular-jwt';
-import { UploadBoxComponent } from '@shop/common-ui';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { provideStoreDevtools } from '@ngrx/store-devtools';
+import {adminProductsReducer} from "../../../libs/shop-client-lib/src/lib/pages/admin/+store/admin-products.reducer";
 
 @Injectable({ providedIn: 'root' })
 export class TranslocoHttpLoader implements TranslocoLoader {
@@ -46,10 +50,21 @@ export class TranslocoHttpLoader implements TranslocoLoader {
 
 bootstrapApplication(AppComponent, {
   providers: [
-    provideEffects(),
-    provideStore(),
+    // provideEffects(),
+    // provideStore(),
+    provideStore({
+      adminProducts: adminProductsReducer
+    }),
+    provideStoreDevtools({
+      maxAge: 25,
+      logOnly: isDevMode(),
+    }),
 
-    provideRouter(appRoutes, withEnabledBlockingInitialNavigation(), withComponentInputBinding()),
+    provideRouter(
+      appRoutes,
+      withEnabledBlockingInitialNavigation(),
+      withComponentInputBinding()
+    ),
 
     provideHttpClient(withInterceptors([accessTokenInterceptor])),
 
@@ -95,13 +110,5 @@ bootstrapApplication(AppComponent, {
         deps: [TranslocoService],
       },
     }),
-
-    // {
-    //   provide: NG_VALUE_ACCESSOR,
-    //   useExisting: forwardRef(() => UploadBoxComponent),
-    //   multi: true,
-    // },
-
-
   ],
 }).catch((err) => console.error(err));

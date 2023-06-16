@@ -1,4 +1,4 @@
-import { ActivatedRouteSnapshot, Route } from '@angular/router';
+import {ActivatedRouteSnapshot, Route} from '@angular/router';
 
 import { AdminShellComponent } from '../feature/admin-shell/admin-shell.component';
 import { inject } from '@angular/core';
@@ -10,7 +10,8 @@ import { provideEffects } from '@ngrx/effects';
 import { AdminProductsEffects } from '../+store/admin-products.effects';
 import { AdminProductsService } from '../data-access/admin-products.service';
 import { AdminProductDetailsComponent } from '../feature/admin-product-details/admin-product-details.component';
-import {PathVariable, QueryParam, RouterData} from '@shop/common-utils';
+import {PathVariable, RouterData} from '@shop/common-utils';
+import {AdminProductsResolver, } from "./resolvers/admin-products.resolver";
 
 export const adminRoutes: Route[] = [
   {
@@ -21,12 +22,16 @@ export const adminRoutes: Route[] = [
     providers: [
       AdminProductsFacade,
       AdminProductsService,
+      AdminProductsResolver,
       provideEffects(AdminProductsEffects),
     ],
     children: [
       {
         path: 'products',
         component: AdminProductsComponent,
+        resolve: [
+          () => inject(AdminProductsResolver).resolve(),
+        ]
       },
       {
         path: 'products/add',
