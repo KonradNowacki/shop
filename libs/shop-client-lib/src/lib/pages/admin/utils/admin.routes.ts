@@ -10,7 +10,7 @@ import { provideEffects } from '@ngrx/effects';
 import { AdminProductsEffects } from '../+store/admin-products.effects';
 import { AdminProductsService } from '../data-access/admin-products.service';
 import { AdminProductDetailsComponent } from '../feature/admin-product-details/admin-product-details.component';
-import {QueryParam, RouterData} from '@shop/common-utils';
+import {PathVariable, QueryParam, RouterData} from '@shop/common-utils';
 
 export const adminRoutes: Route[] = [
   {
@@ -33,17 +33,17 @@ export const adminRoutes: Route[] = [
         component: AdminProductAddShellComponent,
       },
       {
-        path: `products/edit/:${QueryParam.PRODUCT_ID}`,
+        path: `products/edit/:${PathVariable.PRODUCT_ID}`,
         component: AdminProductAddShellComponent,
         resolve: {
           [RouterData.EDITED_PRODUCT]: (route: ActivatedRouteSnapshot) => {
-            const id = route.params[QueryParam.PRODUCT_ID];
+            const id = route.params[PathVariable.PRODUCT_ID];
             return inject(AdminProductsService).getAdminProductDetails(id);
           },
         },
       },
       {
-        path: `products/:${QueryParam.PRODUCT_ID}`,
+        path: `products/:${PathVariable.PRODUCT_ID}`,
         component: AdminProductDetailsComponent,
       },
     ],

@@ -1,5 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import {StorageKey} from "@shop/common-utils";
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -14,6 +15,6 @@ export class AuthService {
   }
 
   logout(): void {
-    localStorage.removeItem('access_token');
+    localStorage.removeItem(StorageKey.ACCESS_TOKEN);
   }
 }

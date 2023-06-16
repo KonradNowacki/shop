@@ -28,7 +28,7 @@ import {
   TranslocoModule,
   TranslocoService,
 } from '@ngneat/transloco';
-import { accessTokenInterceptor, ErrorKey } from '@shop/common-utils';
+import {accessTokenInterceptor, ErrorKey, StorageKey} from '@shop/common-utils';
 import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { JwtModule } from '@auth0/angular-jwt';
@@ -57,7 +57,7 @@ bootstrapApplication(AppComponent, {
       TranslocoModule,
       JwtModule.forRoot({
         config: {
-          tokenGetter: () => localStorage.getItem('access_token'),
+          tokenGetter: () => localStorage.getItem(StorageKey.ACCESS_TOKEN),
         },
       })
     ),

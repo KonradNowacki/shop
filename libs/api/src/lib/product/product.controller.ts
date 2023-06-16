@@ -19,7 +19,7 @@ import { ProductService } from './product.service';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { Product } from './product.entity';
 import {
-  EmailString,
+  EmailString, FormDataKey,
   ProductCategory,
   QueryParam,
   RolesEnum,
@@ -56,7 +56,7 @@ export class ProductController {
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(RolesEnum.USER)
   @UseInterceptors(
-    FileInterceptor('image', {
+    FileInterceptor(FormDataKey.IMAGE, {
       storage: diskStorage({
         destination: './uploads',
         filename(
@@ -74,7 +74,7 @@ export class ProductController {
     })
   )
   async createProduct(
-    @Body('data', CustomPipe, ValidationPipe) data: CreateProductDto,
+    @Body(FormDataKey.DATA, CustomPipe, ValidationPipe) data: CreateProductDto,
     @User('email') email: EmailString,
     @UploadedFile() file?: Express.Multer.File
   ): Promise<Product> {
