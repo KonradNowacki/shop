@@ -7,6 +7,6 @@ export const initialState: AdminProductsState = adminProductsAdapter.getInitialS
 
 export const adminProductsReducer = createReducer(
   initialState,
-  on(AdminProductsActions.setProducts, (state, { products }) => adminProductsAdapter.setMany(products, state)
-  )
+  on(AdminProductsActions.setProducts, (state, { products }) => adminProductsAdapter.setMany(products, state)),
+  on(AdminProductsActions.unsetProduct, (state, { id }) => adminProductsAdapter.removeOne(id, state))
 );

@@ -42,4 +42,8 @@ export class ProductsApiService {
       `http://localhost:3000/products/my/${productId}`
     );
   }
+
+  deleteProduct(id: number): Observable<unknown> {
+    return this.httpClient.delete(`http://localhost:3000/products/${id}`);
+  }
 }

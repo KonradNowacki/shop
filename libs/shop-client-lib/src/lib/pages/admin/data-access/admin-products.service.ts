@@ -10,22 +10,21 @@ export class AdminProductsService {
   private readonly productsApiService = inject(ProductsApiService);
   private readonly adminProductsFacade = inject(AdminProductsFacade);
 
-  getLoggedUsersProducts(): Observable<AdminProductDto[]> {
-    return this.productsApiService.getLoggedInUsersProducts();
-  }
-
   addProduct(product: AdminProductModel): void {
     this.adminProductsFacade.createProduct(product);
-  }
-
-  // TODO KN Change type map
-  getAdminProducts(): Observable<any[]> {
-    return this.productsApiService.getLoggedInUsersProducts();
   }
 
   getAdminProductDetails(
     productId: number
   ): Observable<AdminProductDetailsDto> {
     return this.productsApiService.getLoggedInUsersProductDetails(productId);
+  }
+
+  removeProduct(id: number): void {
+    this.adminProductsFacade.removeProduct(id);
+  }
+
+  getProducts(): Observable<AdminProductModel[]> {
+    return this.adminProductsFacade.getProducts();
   }
 }

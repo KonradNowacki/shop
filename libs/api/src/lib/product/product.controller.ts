@@ -1,12 +1,12 @@
 import {
   ArgumentMetadata,
   Body,
-  Controller,
+  Controller, Delete,
   Get,
   Injectable,
   Logger,
   NotFoundException,
-  Param,
+  Param, ParseIntPipe,
   PipeTransform,
   Post,
   Query,
@@ -150,4 +150,17 @@ export class ProductController {
 
     return ProductMapper.entityToAdminProductDetailsDto(product);
   }
+
+  @Delete('/:productId')
+  @UseGuards(JwtAuthGuard)
+  @Roles(RolesEnum.USER)
+  async deleteProduct(@Param('productId', ParseIntPipe) productId: number): Promise<void> {
+    this.logger.log(
+      `${ProductController.name} invoked deleteProduct with productId ${productId}`
+    );
+
+    return await this.productService.deleteProduct(productId);
+  }
+
+
 }

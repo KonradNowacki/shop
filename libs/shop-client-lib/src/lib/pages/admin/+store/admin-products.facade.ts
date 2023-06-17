@@ -20,4 +20,8 @@ export class AdminProductsFacade {
   getProducts(): Observable<AdminProductModel[]> {
     return this.store.select(AdminProductsSelectors.adminProducts);
   }
+
+  removeProduct(id: number): void {
+    this.store.dispatch(AdminProductsActions.removeProduct({ id }));
+  }
 }

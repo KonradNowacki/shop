@@ -15,7 +15,7 @@
       <td>{{ 'product-category.' + product.category | transloco }}</td>
       <td>
         <button type="button" [routerLink]="'/admin/products/edit/' + product.id">{{ 'button.edit' | transloco }}</button>
-          <button>{{ 'button.remove' }}</button>
+         <button (click)="removeProduct(product.id)">{{ 'button.remove' }}</button>
       </td>
     </tr>
   </table>

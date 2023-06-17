@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { AdminProductsService } from '../../data-access/admin-products.service';
 import { AsyncPipe, JsonPipe } from '@angular/common';
+import {of} from "rxjs";
 
 @Component({
   selector: 'shop-admin-product-details',
@@ -13,6 +14,6 @@ import { AsyncPipe, JsonPipe } from '@angular/common';
 export class AdminProductDetailsComponent {
   private readonly adminProductsService = inject(AdminProductsService);
 
-  protected readonly productDetails$ =
-    this.adminProductsService.getAdminProductDetails(8);
+  protected readonly productDetails$ = of()
+    // this.adminProductsService.getAdminProductDetails(8);
 }

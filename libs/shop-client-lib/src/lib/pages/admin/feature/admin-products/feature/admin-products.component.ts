@@ -1,9 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AdminProductsService } from '../../../data-access/admin-products.service';
 import { TranslocoModule } from '@ngneat/transloco';
 import {RouterLink} from "@angular/router";
-import {AdminProductsFacade} from "../../../+store/admin-products.facade";
+import {AdminProductsService} from "../../../data-access/admin-products.service";
 
 // TODO KN Move the table to a common generic component
 
@@ -15,7 +14,11 @@ import {AdminProductsFacade} from "../../../+store/admin-products.facade";
   styleUrls: ['./admin-products.component.scss'],
 })
 export class AdminProductsComponent {
-  private readonly adminProductsFacade = inject(AdminProductsFacade);
+  private readonly adminProductsService = inject(AdminProductsService)
 
-  protected readonly products$ = this.adminProductsFacade.getProducts();
+  protected readonly products$ = this.adminProductsService.getProducts();
+
+  removeProduct(id: number) {
+    this.adminProductsService.removeProduct(id);
+  }
 }
