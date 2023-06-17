@@ -5,7 +5,6 @@ import {catchError, EMPTY, exhaustMap, map, tap} from 'rxjs';
 import { AdminProductsActions } from './admin-products.actions';
 import { ProductsApiService } from '../../../api/products-api.service';
 import { CreateProductDto } from '@shop/common-api';
-import { AdminProductsFacade } from './admin-products.facade';
 
 @Injectable()
 export class AdminProductsEffects {

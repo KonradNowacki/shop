@@ -142,7 +142,7 @@ export class ProductController {
     this.logger.log(
       `${ProductController.name} invoked getLoggedUsersProductDetails with productId ${productId}`
     );
-    const product = await this.productService.getLoggedUsersProductDetails(productId);
+    const product = await this.productService.getLoggedUsersProductDetails(productId, email);
 
     if (!product) {
       throw new NotFoundException();
@@ -152,14 +152,17 @@ export class ProductController {
   }
 
   @Delete('/:productId')
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(RolesEnum.USER)
-  async deleteProduct(@Param('productId', ParseIntPipe) productId: number): Promise<void> {
+  async deleteProduct(
+    @Param('productId', ParseIntPipe) productId: number,
+    @User('email') email: EmailString
+  ): Promise<void> {
     this.logger.log(
       `${ProductController.name} invoked deleteProduct with productId ${productId}`
     );
 
-    return await this.productService.deleteProduct(productId);
+    return await this.productService.deleteProduct(productId, email);
   }
 
 

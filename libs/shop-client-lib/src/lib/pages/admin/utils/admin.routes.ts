@@ -11,7 +11,7 @@ import { AdminProductsEffects } from '../+store/admin-products.effects';
 import { AdminProductsService } from '../data-access/admin-products.service';
 import { AdminProductDetailsComponent } from '../feature/admin-product-details/admin-product-details.component';
 import {PathVariable, RouterData} from '@shop/common-utils';
-import {AdminProductsResolver, } from "./resolvers/admin-products.resolver";
+import {AdminProductsResolver, } from "./admin-products.resolver";
 
 export const adminRoutes: Route[] = [
   {

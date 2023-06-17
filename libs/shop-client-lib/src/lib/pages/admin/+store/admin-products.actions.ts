@@ -9,5 +9,6 @@ export const AdminProductsActions = createActionGroup({
 
     setProducts: props<{ products: AdminProductModel[] }>(),
     unsetProduct: props<{ id: number }>(),
+    setProduct: props<{ product: AdminProductModel }>(),
   },
 });

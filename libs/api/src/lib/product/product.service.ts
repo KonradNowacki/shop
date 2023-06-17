@@ -1,4 +1,8 @@
-import {Injectable, NotFoundException, UnauthorizedException} from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Between, Repository } from 'typeorm';
 import { Product } from './product.entity';
@@ -51,29 +55,37 @@ export class ProductService {
       where: {
         category,
         price: Between(minPrice, maxPrice),
-        // owner
+        owner
       },
       take: limit,
     });
   }
 
-  // async getLoggedUsersProducts(email: EmailString): Promise<Product[]> {
-  //   const owner = await this.userService.findUserByEmail(email);
-  //
-  //   return await this.productRepository.find({
-  //     where: { owner }
-  //   })
-  // }
-
-  async getLoggedUsersProductDetails(id: number): Promise<Product | null> {
-    return await this.productRepository.findOneBy({ id });
-  }
-
-  async deleteProduct(id: number): Promise<void> {
+  async getLoggedUsersProductDetails(id: number, ownerEmail: EmailString): Promise<Product | null> {
     const product = await this.productRepository.findOneBy({ id });
     if (!product) {
       throw new NotFoundException();
     }
+    if (product.owner.email !== ownerEmail) {
+      throw new UnauthorizedException();
+    }
+    return product;
+
+  }
+
+  async deleteProduct(id: number, ownerEmail: EmailString): Promise<void> {
+    const product = await this.productRepository.findOne({
+      relations: ['owner'],
+      where: { id },
+    });
+
+    if (!product) {
+      throw new NotFoundException();
+    }
+    if (product.owner.email !== ownerEmail) {
+      throw new UnauthorizedException();
+    }
+
     await this.productRepository.delete({ id });
   }
 }

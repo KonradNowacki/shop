@@ -1,12 +1,12 @@
 import { inject, Injectable } from '@angular/core';
-import {HttpClient, HttpEvent} from '@angular/common/http';
+import { HttpClient, HttpEvent } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {
   AdminProductDetailsDto,
   AdminProductDto,
   CreateProductDto,
 } from '@shop/common-api';
-import {FormDataKey} from "@shop/common-utils";
+import { FormDataKey } from '@shop/common-utils';
 
 @Injectable({ providedIn: 'root' })
 export class ProductsApiService {
@@ -21,7 +21,7 @@ export class ProductsApiService {
   createProduct(
     product: CreateProductDto,
     image: File | null
-  ): Observable<HttpEvent<AdminProductDto>> {
+  ): Observable<AdminProductDto> {
     const formData = new FormData();
     formData.append(FormDataKey.DATA, JSON.stringify(product));
     if (image) {
@@ -30,8 +30,7 @@ export class ProductsApiService {
 
     return this.httpClient.post<AdminProductDto>(
       'http://localhost:3000/products',
-      formData,
-      { observe: 'events' }
+      formData
     );
   }
 
