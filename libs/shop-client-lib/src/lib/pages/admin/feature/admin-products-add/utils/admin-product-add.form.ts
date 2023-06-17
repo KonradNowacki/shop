@@ -7,6 +7,8 @@ import { AdminProductModel } from '../../../+store/admin-product.model';
 export class AdminProductAddForm {
   buildForm(): FormGroup<TypedFormGroup<AdminProductModel>> {
     return new FormGroup({
+      id: new FormControl<number | null>(null),
+
       name: new FormControl<string>('', {
         validators: [Validators.required],
       }),

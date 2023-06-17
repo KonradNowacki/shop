@@ -1,10 +1,12 @@
-import { AdminProductModel } from './admin-product.model';
 import { createReducer, on } from '@ngrx/store';
 import { AdminProductsActions } from './admin-products.actions';
+import { adminProductsAdapter } from './admin-products.entity';
+import {AdminProductsState} from "./admin-product.model";
 
-const adminProductsInitialState: AdminProductModel[] = [];
+export const initialState: AdminProductsState = adminProductsAdapter.getInitialState();
 
 export const adminProductsReducer = createReducer(
-  adminProductsInitialState,
-  on(AdminProductsActions.setProducts, (state, { products }) => products)
+  initialState,
+  on(AdminProductsActions.setProducts, (state, { products }) => adminProductsAdapter.setMany(products, state)
+  )
 );

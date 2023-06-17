@@ -1,12 +1,14 @@
 import {createFeatureSelector, createSelector} from "@ngrx/store";
-import {AdminProductModel} from "./admin-product.model";
+import {AdminProductModel, AdminProductsState} from "./admin-product.model";
+import {adminProductsAdapter} from "./admin-products.entity";
 
-export class AdminProductsSelectors {
-  private static readonly adminProductsFeatureSelector = createFeatureSelector<AdminProductModel[]>('adminProducts');
-  static readonly adminProducts = createSelector(
-    AdminProductsSelectors.adminProductsFeatureSelector,
-    (state: AdminProductModel[]) => state
-  );
-}
+const { selectAll } = adminProductsAdapter.getSelectors();
+
+const adminProductsFeatureSelector = createFeatureSelector<AdminProductsState>('adminProducts');
+
+export const adminProducts = createSelector(
+  adminProductsFeatureSelector,
+  adminProductsAdapter.getSelectors().selectAll
+);
 
 

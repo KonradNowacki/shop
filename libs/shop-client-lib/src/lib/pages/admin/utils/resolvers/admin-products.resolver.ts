@@ -23,6 +23,7 @@ export class AdminProductsResolver {
   }
 }
 
+// TODO KN Move to a different file
 const mapper = (products: AdminProductDto[]): AdminProductModel[] => {
   return products.map((product) => {
     const { id, name, price, category } = product;
