@@ -34,11 +34,17 @@ export class User {
   @Column({ default: false })
   isActive: boolean;
 
-  @OneToMany(() => Product, (product) => product.owner, { nullable: true })
+  @OneToMany(
+    () => Product,
+    product => product.owner,
+    { nullable: true })
   @JoinColumn()
   products: Product[];
 
-  @ManyToMany(() => Role, (r) => r.user, { nullable: true, cascade: true })
+  @ManyToMany(
+    () => Role,
+    r => r.user,
+    { nullable: true, cascade: true })
   @JoinTable({
     name: 'users_roles',
     joinColumn: { name: 'user_id', referencedColumnName: 'id' },

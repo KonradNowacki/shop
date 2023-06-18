@@ -62,7 +62,10 @@ export class ProductService {
   }
 
   async getLoggedUsersProductDetails(id: number, ownerEmail: EmailString): Promise<Product | null> {
-    const product = await this.productRepository.findOneBy({ id });
+    const product = await this.productRepository.findOne({
+    where: { id },
+      relations: ['owner'],
+  });
     if (!product) {
       throw new NotFoundException();
     }
