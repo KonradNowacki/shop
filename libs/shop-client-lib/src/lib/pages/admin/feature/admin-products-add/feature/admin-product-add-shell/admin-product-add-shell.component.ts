@@ -10,7 +10,7 @@ import {
 } from '@shop/common-ui';
 import { TranslocoModule } from '@ngneat/transloco';
 import { ReactiveFormsModule, Validators } from '@angular/forms';
-import {ProductCategory, RouterData} from '@shop/common-utils';
+import {PathVariable, ProductCategory, RouterData} from '@shop/common-utils';
 import { AdminProductsService } from '../../../../data-access/admin-products.service';
 import { AdminProductModel } from '../../../../+store/admin-product.model';
 import {
@@ -18,7 +18,7 @@ import {
   ControlErrorsDirective,
   FormActionDirective,
 } from '@ngneat/error-tailor';
-import {ActivatedRoute} from "@angular/router";
+import {AdminProductDetailsDto} from "@shop/common-api";
 
 @Component({
   selector: 'shop-admin-product-add-shell',
@@ -43,7 +43,8 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class AdminProductAddShellComponent implements OnInit {
 
-  @Input(RouterData.EDITED_PRODUCT) editedProduct?: any;
+  @Input(RouterData.EDITED_PRODUCT) editedProduct?: AdminProductDetailsDto;
+  @Input(PathVariable.PRODUCT_ID) productId: number;
 
   protected readonly form = inject(AdminProductAddForm).buildForm();
   protected readonly productCategories = Object.keys(ProductCategory);
@@ -53,19 +54,25 @@ export class AdminProductAddShellComponent implements OnInit {
     return this.form.controls.category.hasValidator(Validators.required);
   }
 
+  get isEditMode(): boolean {
+    return !!this.editedProduct;
+  }
+
   ngOnInit() {
     if (this.editedProduct) {
       this.form.patchValue(this.editedProduct);
     }
-
-    console.log('this.editedProduct', this.editedProduct)
   }
 
   submit(): void {
     if (this.form.valid) {
       const price = +(this.form?.controls?.price?.value ?? 0);
       const product = { ...this.form.value, price } as AdminProductModel;
-      this.adminProductsService.addProduct(product);
+
+      this.isEditMode
+        ? this.adminProductsService.updateProduct(this.productId, product)
+        : this.adminProductsService.addProduct(product);
+
     } else {
       this.form.markAllAsTouched();
     }

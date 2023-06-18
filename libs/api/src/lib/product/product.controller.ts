@@ -6,7 +6,7 @@ import {
   Injectable,
   Logger,
   NotFoundException,
-  Param, ParseIntPipe,
+  Param, ParseIntPipe, Patch,
   PipeTransform,
   Post,
   Query,
@@ -36,6 +36,7 @@ import { Roles } from '../auth/guards/roles.decorator';
 import { RolesGuard } from '../auth/guards/roles.guard';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
+import {UpdateProductDto} from "../../../../common/api-contract/src/lib/update-product.dto";
 
 @Injectable()
 export class CustomPipe implements PipeTransform {
@@ -91,6 +92,41 @@ export class ProductController {
       email,
       file?.filename ?? undefined
     );
+  }
+
+  // TODO KN Move FileInterceptor logic to a separate interceptor & valdator
+  @Patch('/:productId')
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(RolesEnum.USER)
+  @UseInterceptors(
+    FileInterceptor(FormDataKey.IMAGE, {
+      storage: diskStorage({
+        destination: './uploads',
+        filename(
+          req: Express.Request,
+          file: Express.Multer.File,
+          callback: (error: Error | null, filename: string) => void
+        ) {
+          const fileName = `${Date.now()}-${file.originalname.replace(
+            /\s/g,
+            '_'
+          )}`;
+          callback(null, fileName);
+        },
+      }),
+    })
+  )
+  async updateProduct(
+    @Body(FormDataKey.DATA, CustomPipe, ValidationPipe) data: UpdateProductDto,
+    @User('email') email: EmailString,
+    @Param('productId', ParseIntPipe) productId: number,
+    @UploadedFile() file?: Express.Multer.File
+  ): Promise<Product> {
+    this.logger.log(
+      `${ProductController.name} invoked signup updateProduct name ${data.name}`
+    );
+
+    return await this.productService.updateProduct(productId, data, email);
   }
 
   @Get()

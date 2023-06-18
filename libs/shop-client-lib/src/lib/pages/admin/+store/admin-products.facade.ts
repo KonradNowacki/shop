@@ -13,6 +13,10 @@ export class AdminProductsFacade {
     this.store.dispatch(AdminProductsActions.createProduct({ product }));
   }
 
+  updateProduct(productId: number, product: AdminProductModel): void {
+    this.store.dispatch(AdminProductsActions.updateProduct({ product, productId }));
+  }
+
   setProducts(products: AdminProductModel[]): void {
     this.store.dispatch(AdminProductsActions.setProducts({ products }));
   }

@@ -14,6 +14,10 @@ export class AdminProductsService {
     this.adminProductsFacade.createProduct(product);
   }
 
+  updateProduct(productId: number, product: AdminProductModel): void {
+    this.adminProductsFacade.updateProduct(productId, product);
+  }
+
   getAdminProductDetails(
     productId: number
   ): Observable<AdminProductDetailsDto> {

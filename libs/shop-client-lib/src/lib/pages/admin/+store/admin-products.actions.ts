@@ -5,6 +5,7 @@ export const AdminProductsActions = createActionGroup({
   source: 'ADMIN PRODUCT',
   events: {
     createProduct: props<{ product: AdminProductModel }>(),
+    updateProduct: props<{ product: AdminProductModel, productId: number }>(),
     removeProduct: props<{ id: number }>(),
 
     setProducts: props<{ products: AdminProductModel[] }>(),

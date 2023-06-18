@@ -7,6 +7,7 @@ import {
   CreateProductDto,
 } from '@shop/common-api';
 import { FormDataKey } from '@shop/common-utils';
+import {UpdateProductDto} from "../../../../common/api-contract/src/lib/update-product.dto";
 
 @Injectable({ providedIn: 'root' })
 export class ProductsApiService {
@@ -30,6 +31,23 @@ export class ProductsApiService {
 
     return this.httpClient.post<AdminProductDto>(
       'http://localhost:3000/products',
+      formData
+    );
+  }
+
+  updateProduct(
+    productId: number,
+    product: UpdateProductDto,
+    image: File | null
+  ): Observable<AdminProductDto> {
+    const formData = new FormData();
+    formData.append(FormDataKey.DATA, JSON.stringify(product));
+    if (image) {
+      formData.append(FormDataKey.IMAGE, image);
+    }
+
+    return this.httpClient.patch<AdminProductDto>(
+      `http://localhost:3000/products/${productId}`,
       formData
     );
   }

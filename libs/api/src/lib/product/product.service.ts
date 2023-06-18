@@ -9,6 +9,7 @@ import { Product } from './product.entity';
 import { EmailString, ProductCategory } from '@shop/common-utils';
 import { UserService } from '../user/user.service';
 import { User } from '../user/user.entity';
+import {UpdateProductDto} from "../../../../common/api-contract/src/lib/update-product.dto";
 
 @Injectable()
 export class ProductService {
@@ -36,6 +37,30 @@ export class ProductService {
     });
 
     return await this.productRepository.save(product, { transaction: true });
+  }
+
+
+  async updateProduct(
+    id: number,
+    data: UpdateProductDto,
+    email: EmailString,
+  ) {
+      await this.productRepository.update({ id }, { ...data });
+
+      const product = await this.productRepository.findOne({
+        where: { id },
+        relations: ['owner'],
+      });
+
+      if (!product) {
+        throw new NotFoundException();
+      }
+
+      if(product.owner.email !== email) {
+        throw new UnauthorizedException();
+      }
+
+      return product;
   }
 
   async getProducts(

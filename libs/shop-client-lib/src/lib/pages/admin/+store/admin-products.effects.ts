@@ -5,6 +5,7 @@ import {catchError, EMPTY, exhaustMap, map, tap} from 'rxjs';
 import { AdminProductsActions } from './admin-products.actions';
 import { ProductsApiService } from '../../../api/products-api.service';
 import { CreateProductDto } from '@shop/common-api';
+import {UpdateProductDto} from "../../../../../../common/api-contract/src/lib/update-product.dto";
 
 @Injectable()
 export class AdminProductsEffects {
@@ -21,6 +22,29 @@ export class AdminProductsEffects {
           const newProduct: CreateProductDto = { name, price, category };
 
           return this.productsApiService.createProduct(newProduct, image).pipe(
+            tap(() => {
+              this.router.navigate(['/admin/products']);
+            }),
+            catchError(() => {
+              // TODO KN Handle error
+              return EMPTY;
+            })
+          );
+        })
+      );
+    },
+    { dispatch: false }
+  );
+
+  updateProduct$ = createEffect(
+    () => {
+      return this.$actions.pipe(
+        ofType(AdminProductsActions.updateProduct),
+        exhaustMap(({ product, productId }) => {
+          const { image, name, price, category } = product;
+          const updatedProduct: UpdateProductDto = { name, price, category };
+
+          return this.productsApiService.updateProduct(productId, updatedProduct, image).pipe(
             tap(() => {
               this.router.navigate(['/admin/products']);
             }),

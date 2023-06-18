@@ -31,6 +31,6 @@
       ></shop-typeahead-dropdown-option>
     </shop-typeahead-dropdown>
 
-    <button shop-button>{{ 'button.save-product' | transloco }}</button>
+    <button shop-button>{{ (isEditMode ? 'button.update-product' : 'button.save-product') | transloco }}</button>
   </form>
 </div>
