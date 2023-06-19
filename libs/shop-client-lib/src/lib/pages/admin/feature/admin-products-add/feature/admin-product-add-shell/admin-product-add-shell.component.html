@@ -1,5 +1,8 @@
 <div class="wrapper">
   <form [formGroup]="form" (ngSubmit)="submit()" errorTailor>
+
+    {{ form.controls. }}
+
     <shop-upload-box
       [formControl]="form.controls.image"
     ></shop-upload-box>

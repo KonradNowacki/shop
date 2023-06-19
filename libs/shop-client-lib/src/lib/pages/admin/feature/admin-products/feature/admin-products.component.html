@@ -5,6 +5,7 @@
       <th>{{ 'table-header.name' | transloco | titlecase }}</th>
       <th>{{ 'table-header.price' | transloco | titlecase }}</th>
       <th>{{ 'table-header.category' | transloco | titlecase }}</th>
+      <th>{{ 'table-header.publicly-visible' | transloco | titlecase }}</th>
       <th></th>
     </tr>
 
@@ -13,6 +14,7 @@
       <td>{{ product.name }}</td>
       <td>{{ product.price | currency }}</td>
       <td>{{ 'product-category.' + product.category | transloco }}</td>
+      <td>{{ 'piblic' }}</td>
       <td class="actions">
 
         <button
@@ -23,9 +25,9 @@
           type="button"
           [routerLink]="'/admin/products/edit/' + product.id">
           <fa-icon [icon]="faPenToSquare"></fa-icon>
-          {{ 'button.edit' | transloco }}
+          <span class="text">{{ 'button.edit' | transloco }}</span>
         </button>
-
+<!-- TODO KN Make the buttons hide text for narrow screen | use container query -->
          <button
            shop-button
            variant="outline"
@@ -34,7 +36,7 @@
            type="button"
            (click)="removeProduct(product.id)">
            <fa-icon [icon]="faTrash"></fa-icon>
-           {{ 'button.remove' | transloco }}
+           <span class="text">{{ 'button.remove' | transloco }}</span>
          </button>
       </td>
     </tr>

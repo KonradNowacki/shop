@@ -12,6 +12,11 @@ table {
       flex: 0 0 100px;
       max-width: 2rem;
     }
+
+    &:last-of-type {
+      flex: 1.1;
+      justify-content: flex-end;
+    }
   }
 
   tr {
@@ -21,6 +26,8 @@ table {
 
     &:first-of-type {
       background-color: #20fa20;
+      border-top-left-radius: var(--border-radius-large);
+      border-top-right-radius: var(--border-radius-large);
     }
 
     &:nth-of-type(2n) {
@@ -32,7 +39,19 @@ table {
 
 button {
   color: var(--color-error);
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  gap: 6px;
+
+  //container: btn / normal;
 }
+
+//@container btn (min-width: 700px) {
+//  button .text {
+//    display: none;
+//  }
+//}
 
 .actions {
   display: flex;
