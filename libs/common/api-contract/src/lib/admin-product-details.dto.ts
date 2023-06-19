@@ -6,4 +6,5 @@ export class AdminProductDetailsDto {
   readonly name: string;
   readonly price: number;
   readonly category: ProductCategory;
+  readonly imageBase64?: string;
 }

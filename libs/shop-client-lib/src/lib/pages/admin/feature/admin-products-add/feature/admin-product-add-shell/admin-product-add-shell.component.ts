@@ -43,8 +43,8 @@ import {AdminProductDetailsDto} from "@shop/common-api";
 })
 export class AdminProductAddShellComponent implements OnInit {
 
-  @Input(RouterData.EDITED_PRODUCT) editedProduct?: AdminProductDetailsDto;
-  @Input(PathVariable.PRODUCT_ID) productId: number;
+  @Input(RouterData.EDITED_PRODUCT) protected editedProduct?: AdminProductDetailsDto;
+  @Input(PathVariable.PRODUCT_ID) protected productId: number;
 
   protected readonly form = inject(AdminProductAddForm).buildForm();
   protected readonly productCategories = Object.keys(ProductCategory);

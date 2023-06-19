@@ -1,9 +1,12 @@
 <div class="wrapper">
   <form [formGroup]="form" (ngSubmit)="submit()" errorTailor>
 
-    {{ form.controls. }}
+    {{ editedProduct?.imageBase64 }}
+
+    <img *ngIf="editedProduct?.imageBase64" [src]="editedProduct?.imageBase64" alt="product image" width="300" height="300">
 
     <shop-upload-box
+      *ngIf="!editedProduct?.imageBase64"
       [formControl]="form.controls.image"
     ></shop-upload-box>
 

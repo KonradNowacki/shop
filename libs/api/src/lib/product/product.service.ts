@@ -97,6 +97,9 @@ export class ProductService {
     if (product.owner.email !== ownerEmail) {
       throw new UnauthorizedException();
     }
+
+
+
     return product;
 
   }
