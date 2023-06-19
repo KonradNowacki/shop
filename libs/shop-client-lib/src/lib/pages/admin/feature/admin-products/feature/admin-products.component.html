@@ -5,7 +5,7 @@
       <th>{{ 'table-header.name' | transloco | titlecase }}</th>
       <th>{{ 'table-header.price' | transloco | titlecase }}</th>
       <th>{{ 'table-header.category' | transloco | titlecase }}</th>
-      <th>{{ 'table-header.actions' | transloco | titlecase }}</th>
+      <th></th>
     </tr>
 
     <tr *ngFor="let product of products$ | async; let index = index">
@@ -13,9 +13,29 @@
       <td>{{ product.name }}</td>
       <td>{{ product.price | currency }}</td>
       <td>{{ 'product-category.' + product.category | transloco }}</td>
-      <td>
-        <button type="button" [routerLink]="'/admin/products/edit/' + product.id">{{ 'button.edit' | transloco }}</button>
-         <button (click)="removeProduct(product.id)">{{ 'button.remove' }}</button>
+      <td class="actions">
+
+        <button
+          shop-button
+          variant="outline"
+          color="secondary"
+          size="small"
+          type="button"
+          [routerLink]="'/admin/products/edit/' + product.id">
+          <fa-icon [icon]="faPenToSquare"></fa-icon>
+          {{ 'button.edit' | transloco }}
+        </button>
+
+         <button
+           shop-button
+           variant="outline"
+           color="error"
+           size="small"
+           type="button"
+           (click)="removeProduct(product.id)">
+           <fa-icon [icon]="faTrash"></fa-icon>
+           {{ 'button.remove' | transloco }}
+         </button>
       </td>
     </tr>
   </table>

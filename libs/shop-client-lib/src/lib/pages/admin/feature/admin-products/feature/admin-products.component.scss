@@ -4,9 +4,13 @@ table {
   th, td {
     flex: 1;
     padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
 
     &:first-of-type {
       flex: 0 0 100px;
+      max-width: 2rem;
     }
   }
 
@@ -24,4 +28,16 @@ table {
     }
   }
 
+}
+
+button {
+  color: var(--color-error);
+}
+
+.actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }

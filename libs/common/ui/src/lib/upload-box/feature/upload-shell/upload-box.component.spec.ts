@@ -18,4 +18,5 @@ describe('UploadBoxComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });

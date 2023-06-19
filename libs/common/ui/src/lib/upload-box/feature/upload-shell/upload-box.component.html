@@ -1,10 +1,12 @@
 <section shopUploadBox (fileDropped)="selectFile($event)">
-  <input
-    type="file"
-    #fileRef
-    id="file-drop-area"
-  />
+  <input type="file" #fileRef id="file-drop-area-input"  accept="image/*" />
   <h3>{{ 'text.drag-ang-drop-here' | transloco }}</h3>
   <h3>{{ 'text.or' | transloco }}</h3>
-  <button shop-button>{{ 'button.browse-file' | transloco }}</button>
+  <button shop-button type="button" (click)="fileRef.click()">{{ 'button.browse-file' | transloco }}</button>
+
+  {{ filename }}
+
+  <p *ngIf="isLoadingImagePreview">UPLOADING......</p>
+  <img *ngIf="imageSrc" [src]="imageSrc" alt="'loaded image'" width="200" height="200">
+
 </section>

@@ -1,6 +1,8 @@
 {
   "button.signup": "Sign up",
   "button.signin": "Sign in",
+  "button.edit": "Edit",
+  "button.remove": "Remove",
 
   "label.email": "Email",
   "label.password": "Password",

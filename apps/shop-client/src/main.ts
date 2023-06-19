@@ -38,6 +38,7 @@ import { provideEffects } from '@ngrx/effects';
 import { JwtModule } from '@auth0/angular-jwt';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import {adminProductsReducer} from "../../../libs/shop-client-lib/src/lib/pages/admin/+store/admin-products.reducer";
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 
 @Injectable({ providedIn: 'root' })
 export class TranslocoHttpLoader implements TranslocoLoader {
@@ -74,7 +75,7 @@ bootstrapApplication(AppComponent, {
         config: {
           tokenGetter: () => localStorage.getItem(StorageKey.ACCESS_TOKEN),
         },
-      })
+      }),
     ),
 
     {

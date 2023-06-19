@@ -12,8 +12,8 @@ import {
 })
 export class UploadDirective {
   @Output() readonly fileDropped = new EventEmitter<File>();
-  @HostBinding('class.fileover') fileOver: boolean = false;
-  @HostBinding('class.file-loaded') fileLoaded: boolean = false;
+  @HostBinding('class.fileover') fileOver = false;
+  @HostBinding('class.file-loaded') fileLoaded = false;
 
   @HostListener('dragover', ['$event'])
   protected onDragOver(event: any) {
@@ -39,6 +39,7 @@ export class UploadDirective {
 
     if (file) {
       this.fileLoaded = true;
+      this.fileOver = false;
       this.fileDropped.emit(file);
     }
   }

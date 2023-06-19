@@ -38,6 +38,26 @@ $error: red;
   }
 }
 
+@mixin option($variant) {
+  &.#{$variant} {
+    &--primary {
+      @include basic($primary);
+    }
+    &--secondary {
+      @include basic($secondary);
+    }
+    &--warn {
+      @include basic($warn);
+    }
+    &--success {
+      @include basic($success);
+    }
+    &--error {
+      @include basic($error);
+    }
+  }
+}
+
 :host {
   height: 40px;
   padding: 0 24px;
