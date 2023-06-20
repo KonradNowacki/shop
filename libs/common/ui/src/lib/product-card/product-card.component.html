@@ -1,9 +1,21 @@
 <div class="card">
   <div class="card__image"></div>
-  <div class="card__title">Example product name</div>
-  <div class="card__short-description">
-    This product is super cheap, cool so you should not waste any more time and
-    buy right now
+
+  <div class="card__content">
+    <div class="card__category">
+      <button type="button" shop-capsule size="small">kategoria</button>
+    </div>
+    <div class="card__title">Example product name</div>
+    <div class="card__short-description">
+      This product is super cheap, cool so you should not waste any more time and
+      buy right now
+    </div>
+    <div class="card__basket-plus">
+      <button type="button" shop-button variant="outline" color="primary">
+        <fa-icon [icon]="faPlus"></fa-icon>
+        <span>{{ 'button.add' | transloco }}</span>
+      </button>
+    </div>
   </div>
-  <div class="card__basket-plus">Add</div>
+
 </div>
